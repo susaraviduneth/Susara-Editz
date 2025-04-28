@@ -1,691 +1,699 @@
 /* Basic Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-        /* Dark Mode Colors */
-        --bg-color: #000000;
-        --text-color: #ffffff; /* Primary Cyan */
-        --primary-accent: #00aeff; /* Cyan */
-        --secondary-accent: #ffffff; /* Magenta */
-        --border-color: var(--primary-accent);
-        --box-shadow-color: rgba(255, 255, 255, 0.274);
-        --link-color: var(--secondary-accent);
-        --link-hover-color: var(--primary-accent);
-        --section-bg: #1a1a1a;
-        --item-bg: #0a0a0a;
-        --grid-color: rgba(0, 255, 255, 0.05);
-        --light-text: #00cccc; /* Darker Cyan */
-        --secondary-text: #cc00cc; /* Darker Magenta */
-        --header-bg: rgba(13, 13, 13, 0.9);
-        --nav-bg: rgba(13, 13, 13, 0.9); /* This variable is now less relevant as nav is inside header */
-    }
-
-    body.light-mode {
-        /* Light Mode Colors */
-        --bg-color: #f0f0f0;
-        --text-color: #333; /* Dark Grey */
-        --primary-accent: #007bff; /* Blue */
-        --secondary-accent: #dc3545; /* Red */
-        --border-color: var(--primary-accent);
-        --box-shadow-color: rgba(0, 123, 255, 0.3);
-        --link-color: var(--secondary-accent);
-        --link-hover-color: var(--primary-accent);
-        --section-bg: #ffffff;
-        --item-bg: #eeeeee;
-        --grid-color: rgba(0, 0, 0, 0.05);
-        --light-text: #555; /* Lighter Dark Grey */
-        --secondary-text: #a02a37; /* Darker Red */
-        --header-bg: rgba(240, 240, 240, 0.9);
-        --nav-bg: rgba(240, 240, 240, 0.9); /* This variable is now less relevant */
-    }
-
-
-    body {
-      font-family: 'Roboto Mono', monospace; /* Main content font */
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.7;
-      padding-top: 160px; /* Adjusted padding for the new fixed header height */
-      overflow-x: hidden; /* Prevent horizontal scroll */
-      position: relative; /* Needed for background grid */
-      transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
-    }
-
-    /* Add Sinhala font to body or specific elements if needed */
-    body, .section-body[lang="si"] {
-        font-family: 'Roboto Mono', monospace, 'Noto Sans Sinhala', sans-serif;
-    }
-
-
-    /* Background Grid Effect */
-    .background-grid {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-            linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-            linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1; /* Send to back */
-        opacity: 0.2;
-        transition: background-image 0.5s ease; /* Smooth transition */
-    }
-
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative; /* Needed for button positioning */
-    }
-
-    /* Header - Now the fixed top bar */
-    .header.fixed-top-bar {
-      background-color: var(--header-bg); /* Semi-transparent dark/light */
-      backdrop-filter: blur(5px); /* Frosted glass effect */
-      padding: 0.5rem 0 1.5rem 0; /* Increased bottom padding for animated text */
-      text-align: center; /* Center content by default */
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      border-bottom: 2px solid var(--primary-accent); /* Primary neon border */
-      box-shadow: 0 2px 15px var(--box-shadow-color); /* Primary neon glow */
-      transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, padding 0.5s ease; /* Smooth transition */
-    }
-
-    .header-content {
-        display: flex; /* Use flexbox for layout */
-        justify-content: space-between; /* Space out branding, nav, and button */
-        align-items: center; /* Vertically align items */
-        flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        padding: 0 10px; /* Add some horizontal padding */
-    }
-
-    .site-branding {
-        display: flex;
-        align-items: center;
-        margin-right: 20px; /* Space between branding and nav */
-    }
-
-    .site-title {
-      margin-bottom: 0; /* Remove bottom margin */
-      margin-right: 10px; /* Space between logo and subtitle */
-    }
-
-    .site-logo {
-        display: block;
-        margin: 0; /* Remove auto margin */
-        height: 50px; /* Slightly smaller logo in the bar */
-        max-width: 100px; /* Max width for logo */
-        filter: drop-shadow(0 0 8px var(--primary-accent)) drop-shadow(0 0 15px var(--primary-accent));
-        transition: filter 0.5s ease;
-    }
-
-    .site-subtitle {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.8rem; /* Smaller subtitle */
-      color: var(--light-text);
-      letter-spacing: 1px;
-      transition: color 0.5s ease;
-    }
-
-    .header-nav {
-        flex-grow: 1; /* Allow nav to take available space */
-        text-align: center; /* Center nav links */
-    }
-
-    .header-nav ul {
-      list-style: none;
-      text-align: center;
-      padding: 0; /* Remove default padding */
-      margin: 0; /* Remove default margin */
-    }
-
-    .header-nav ul li {
-      display: inline-block;
-      margin: 0 10px; /* Reduced margin */
-    }
-
-    .nav-link {
-      color: var(--link-color);
-      text-decoration: none;
-      font-weight: 700;
-      padding: 5px 0; /* Adjusted padding */
-      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
-      font-family: 'Roboto Mono', monospace;
-      position: relative;
-      font-size: 0.9rem; /* Slightly smaller nav links */
-    }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -3px; /* Adjusted position */
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--primary-accent);
-        transform: scaleX(0);
-        transition: transform 0.3s ease, background-color 0.5s ease;
-        transform-origin: bottom right;
-    }
-
-    .nav-link:hover {
-      color: var(--link-hover-color);
-      text-shadow: 0 0 5px var(--link-hover-color);
-      transform: translateY(-2px);
-    }
-
-    .nav-link:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
-
-    /* Animated Text within Header */
-    .animated-top-text {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.5rem; /* Adjust size as needed */
-        color: var(--primary-accent); /* Use primary color */
-        text-align: center;
-        margin-top: 10px; /* Space below header-content */
-        text-shadow: 0 0 5px var(--primary-accent); /* Subtle glow */
-        animation: pulseGlow 2s ease-in-out infinite alternate; /* Apply animation */
-        transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
-        display: flex; /* Use flexbox to align text and icon */
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Vertically align */
-    }
-
-    .animated-top-text .youtube-link {
-        display: flex; /* Use flexbox for icon alignment */
-        align-items: center;
-        margin-left: 10px; /* Space between text and icon */
-        text-decoration: none; /* Remove underline from link */
-    }
-
-    .animated-top-text .youtube-icon {
-        display: block; /* Ensure it's a block element */
-        height: 20px; /* Adjust icon size */
-        width: auto;
-        /* SVG from URL might not respect 'fill', but filter should work */
-        filter: drop-shadow(0 0 3px var(--secondary-accent)); /* Subtle glow for icon */
-        transition: filter 0.3s ease; /* Smooth transition for glow */
-    }
-
-    .animated-top-text .youtube-link:hover .youtube-icon {
-        filter: drop-shadow(0 0 5px var(--primary-accent)); /* Change glow on hover */
-    }
-
-
-    /* Animation Keyframes */
-    @keyframes pulseGlow {
-      0% {
-        text-shadow: 0 0 5px var(--primary-accent);
-      }
-      100% {
-        text-shadow: 0 0 15px var(--primary-accent), 0 0 20px var(--primary-accent);
-      }
-    }
-
-
-    /* Theme Toggle Button - Fixed Position */
-    .theme-toggle-button {
-        position: fixed; /* Fixed position */
-        bottom: 20px; /* 20px from the bottom */
-        right: 20px; /* 20px from the right */
-        background-color: transparent;
-        border: 1px solid var(--secondary-accent);
-        color: var(--secondary-accent);
-        font-family: 'Roboto Mono', monospace;
-        font-size: 0.8rem;
-        padding: 5px 10px;
-        cursor: pointer;
-        transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
-        border-radius: 5px;
-        z-index: 1001; /* Ensure it's above other content */
-    }
-
-    body.light-mode .theme-toggle-button {
-         box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
-    }
-
-
-    .theme-toggle-button:hover {
-        color: var(--primary-accent);
-        border-color: var(--primary-accent);
-        box-shadow: 0 0 8px var(--primary-accent);
-    }
-
-
-    /* Main Content */
-    .main-content {
-      padding: 3rem 0;
-    }
-
-    .section {
-      background-color: var(--section-bg); /* Dark grey */
-      margin-bottom: 3rem;
-      padding: 2.5rem;
-      border: 1px solid var(--primary-accent); /* Primary neon border */
-      box-shadow: 0 0 15px var(--box-shadow-color); /* Primary subtle glow */
-      position: relative;
-      overflow: hidden; /* For pseudo-elements */
-      border-radius: 10px; /* Added rounded corners */
-      transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
-    }
-
-    /* Section corner effects */
-    .section::before,
-    .section::after {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--secondary-accent); /* Secondary color corners */
-        transition: border-color 0.5s ease; /* Smooth transition */
-    }
-
-    .section::before {
-        top: -2px;
-        left: -2px;
-        border-right: none;
-        border-bottom: none;
-    }
-
-    .section::after {
-        bottom: -2px;
-        right: -2px;
-        border-left: none;
-        border-top: none;
-    }
-
-
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--secondary-accent); /* Secondary neon for titles */
-      margin-bottom: 2rem;
-      text-align: center;
-      position: relative;
-      padding-bottom: 15px;
-      text-shadow: 0 0 5px var(--secondary-accent);
-      font-size: 2rem;
-      transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
-      background-color: var(--primary-accent); /* Primary color underline */
-      margin: 15px auto 0;
-      box-shadow: 0 0 8px var(--primary-accent);
-      transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
-    }
-
-    .section-body {
-      color: var(--light-text); /* Slightly darker primary text */
-      font-family: 'Roboto Mono', monospace;
-      font-size: 1rem;
-      transition: color 0.5s ease; /* Smooth transition */
-    }
-
-    .section-body p {
-        margin-bottom: 1.2rem;
-    }
-
-    .section-body strong {
-        color: var(--primary-accent); /* Primary color for strong text */
-        transition: color 0.5s ease; /* Smooth transition */
-    }
-
-    /* Creations Gallery */
-    .grid-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .creation-item {
-      background-color: var(--item-bg); /* Very dark */
-      border: 1px solid var(--primary-accent); /* Primary border */
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
-      position: relative;
-      border-radius: 8px; /* Added rounded corners */
-    }
-
-    .creation-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1)); /* Gradient hover effect */
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-
-    body.light-mode .creation-item::before {
-         background: linear-gradient(45deg, rgba(0, 123, 255, 0.1), rgba(220, 53, 69, 0.1)); /* Light mode gradient */
-    }
-
-
-    .creation-item:hover::before {
-        opacity: 1;
-    }
-
-
-    .creation-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.8), 0 10px 25px rgba(255, 0, 255, 0.8); /* Dual color glow */
-    }
-
-     body.light-mode .creation-item:hover {
-        box-shadow: 0 10px 25px rgba(0, 123, 255, 0.8), 0 10px 25px rgba(220, 53, 69, 0.8); /* Light mode dual color glow */
-     }
-
-
-    .creation-item img {
-      display: block;
-      width: 100%;
-      height: 220px; /* Fixed height for consistency */
-      object-fit: cover; /* Cover the area without distortion */
-      border-bottom: 1px solid var(--secondary-accent); /* Secondary border */
-      transition: transform 0.4s ease, border-color 0.5s ease; /* Smooth transition */
-    }
-
-    .creation-item:hover img {
-        transform: scale(1.05);
-    }
-
-    .creation-info {
-      padding: 1.2rem;
-    }
-
-    .creation-info h3 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--primary-accent); /* Primary color for item titles */
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 3px var(--primary-accent);
-      font-size: 1.2rem;
-      transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
-    }
-
-    .creation-info p {
-      font-size: 0.9rem;
-      color: var(--light-text);
-      transition: color 0.5s ease; /* Smooth transition */
-    }
-
-    /* Price List */
-    .price-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-    }
-
-    .price-item {
-      background-color: var(--item-bg); /* Very dark */
-      border: 1px solid var(--secondary-accent); /* Secondary border */
-      padding: 2rem;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
-      position: relative;
-      border-radius: 8px; /* Added rounded corners */
-    }
-
-    .price-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1)); /* Gradient hover effect */
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-
-     body.light-mode .price-item::before {
-         background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(0, 123, 255, 0.1)); /* Light mode gradient */
-     }
-
-
-    .price-item:hover::before {
-        opacity: 1;
-    }
-
-     .price-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(255, 0, 255, 0.8), 0 10px 25px rgba(0, 255, 255, 0.8); /* Dual color glow */
-    }
-
-    body.light-mode .price-item:hover {
-        box-shadow: 0 10px 25px rgba(220, 53, 69, 0.8), 0 10px 25px rgba(0, 123, 255, 0.8); /* Light mode dual color glow */
-    }
-
-
-    .price-item h3 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--secondary-accent); /* Secondary color for price titles */
-      margin-bottom: 1.5rem;
-      text-align: center;
-      text-shadow: 0 0 5px var(--secondary-accent);
-      font-size: 1.5rem;
-      transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
-    }
-
-    .price-item p {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--primary-accent); /* Primary color for price text */
-      text-align: center;
-      margin-bottom: 1.5rem;
-      transition: color 0.5s ease; /* Smooth transition */
-    }
-
-    .price-item ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .price-item ul li {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat left center; /* Secondary color checkmark */
-      background-size: 18px;
-      padding-left: 30px;
-      margin-bottom: 0.8rem;
-      color: var(--secondary-text); /* Darker secondary text */
-      font-size: 1rem;
-      transition: color 0.5s ease; /* Smooth transition */
-    }
-
-    body.light-mode .price-item ul li {
-         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat left center; /* Light mode checkmark */
-         color: var(--secondary-accent); /* Light mode secondary text */
-    }
-
-
-    /* Footer */
-    .footer {
-      background-color: var(--mid-dark-bg); /* Dark grey */
-      color: var(--light-text); /* Darker primary text */
-      text-align: center;
-      padding: 1.5rem 0;
-      border-top: 2px solid var(--primary-accent); /* Primary border */
-      margin-top: 3rem;
-      box-shadow: 0 -2px 15px var(--box-shadow-color); /* Primary glow */
-      transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
-    }
-
-    .footer p {
-      font-size: 0.9rem;
-      font-family: 'Roboto Mono', monospace;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 180px; /* Adjust for stacked header/nav */
-      }
-
-      .header.fixed-top-bar {
-        position: static; /* Make header static on small screens */
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
-      .header-content {
-          flex-direction: column; /* Stack items vertically */
-          align-items: center;
-      }
-
-      .site-branding {
-          flex-direction: column;
-          align-items: center;
-          margin-right: 0;
-          margin-bottom: 10px;
-      }
-
-      .site-title {
-          margin-right: 0;
-          margin-bottom: 5px;
-      }
-
-      .site-logo {
-          margin: 0 auto; /* Center logo when stacked */
-      }
-
-      .site-subtitle {
-          font-size: 0.7rem;
-      }
-
-      .header-nav {
-          width: 100%; /* Nav takes full width */
-          border-top: 1px solid var(--secondary-accent); /* Separator */
-          padding-top: 10px;
-          margin-bottom: 10px;
-      }
-
-      .header-nav ul li {
-        display: block; /* Stack nav links */
-        margin: 5px 0;
-      }
-
-      .nav-link {
-        font-size: 1rem; /* Slightly larger stacked links */
-      }
-
-      .section {
-        padding: 2rem;
-      }
-
-      .site-title {
-        font-size: 2.2rem; /* Keep font size for subtitle */
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      /* Theme toggle button remains fixed */
-      .theme-toggle-button {
-          position: fixed;
-          bottom: 10px; /* Adjust position for smaller screens */
-          right: 10px;
-          font-size: 0.7rem; /* Smaller font */
-          padding: 3px 6px; /* Smaller padding */
-      }
-
-      .animated-top-text {
-          font-size: 1.2rem; /* Smaller text on small screens */
-          margin-top: 5px; /* Adjust margin */
-      }
-
-      .animated-top-text .youtube-icon {
-          height: 16px; /* Smaller icon on small screens */
-      }
-    }
-
-    @media (max-width: 480px) {
-      .site-title {
-        font-size: 1.8rem; /* Keep font size for subtitle */
-      }
-
-      .site-subtitle {
-        font-size: 0.8rem;
-      }
-
-      .nav-link {
-        font-size: 0.9rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
-
-      .section {
-        padding: 1.5rem;
-      }
-
-       .animated-top-text {
-          font-size: 1rem; /* Even smaller text on very small screens */
-      }
-
-       .animated-top-text .youtube-icon {
-          height: 14px; /* Even smaller icon */
-      }
-    }
-
-    /* Placeholder image style */
-    img[alt^="Creation"] {
-        background-color: var(--dark-bg); /* Dark background for placeholders */
-        border: 1px dashed var(--secondary-accent); /* Dashed secondary border */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--secondary-text); /* Darker secondary text */
-        font-size: 0.9rem;
-        text-align: center;
-    }
-/* Add this to your style.css file */
-
-.order-button {
-  display: inline-block; /* Treat like a button */
-  background-color: var(--secondary-accent); /* Use secondary accent color */
-  color: var(--bg-color); /* Use background color for text */
-  padding: 10px 20px;
-  margin-top: 15px; /* Space above the button */
-  text-decoration: none; /* Remove underline */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+    /* Dark Mode Colors */
+    --bg-color: #000000;
+    --text-color: #ffffff; /* Primary Cyan */
+    --primary-accent: #00aeff; /* Cyan */
+    --secondary-accent: #ff00ff; /* Magenta - Corrected from white */
+    --border-color: var(--primary-accent);
+    --box-shadow-color: rgba(255, 255, 255, 0.274);
+    --link-color: var(--secondary-accent);
+    --link-hover-color: var(--primary-accent);
+    --section-bg: #1a1a1a;
+    --item-bg: #0a0a0a;
+    --grid-color: rgba(0, 255, 255, 0.05);
+    --light-text: #00cccc; /* Darker Cyan */
+    --secondary-text: #cc00cc; /* Darker Magenta */
+    --header-bg: rgba(13, 13, 13, 0.9);
+    --nav-bg: rgba(13, 13, 13, 0.9); /* This variable is now less relevant as nav is inside header */
+    --mid-dark-bg: #0d0d0d; /* Added for footer/other mid-dark elements */
+    --dark-bg: #000000; /* Added for placeholder background */
+}
+
+body.light-mode {
+    /* Light Mode Colors */
+    --bg-color: #f0f0f0;
+    --text-color: #333; /* Dark Grey */
+    --primary-accent: #007bff; /* Blue */
+    --secondary-accent: #dc3545; /* Red */
+    --border-color: var(--primary-accent);
+    --box-shadow-color: rgba(0, 123, 255, 0.3);
+    --link-color: var(--secondary-accent);
+    --link-hover-color: var(--primary-accent);
+    --section-bg: #ffffff;
+    --item-bg: #eeeeee;
+    --grid-color: rgba(0, 0, 0, 0.05);
+    --light-text: #555; /* Lighter Dark Grey */
+    --secondary-text: #a02a37; /* Darker Red */
+    --header-bg: rgba(240, 240, 240, 0.9);
+    --nav-bg: rgba(240, 240, 240, 0.9); /* This variable is now less relevant */
+    --mid-dark-bg: #dcdcdc; /* Added for footer/other mid-dark elements */
+    --dark-bg: #cccccc; /* Added for placeholder background */
+}
+
+
+body {
+  font-family: 'Roboto Mono', monospace; /* Main content font */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.7;
+  padding-top: 160px; /* Adjusted padding for the new fixed header height */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative; /* Needed for background grid */
+  transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+}
+
+/* Add Sinhala font to body or specific elements if needed */
+body, .section-body[lang="si"] {
+    font-family: 'Roboto Mono', monospace, 'Noto Sans Sinhala', sans-serif;
+}
+
+
+/* Background Grid Effect */
+.background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1; /* Send to back */
+    opacity: 0.2;
+    transition: background-image 0.5s ease; /* Smooth transition */
+}
+
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative; /* Needed for button positioning */
+}
+
+/* Header - Now the fixed top bar */
+.header.fixed-top-bar {
+  background-color: var(--header-bg); /* Semi-transparent dark/light */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  padding: 0.5rem 0 1.5rem 0; /* Increased bottom padding for animated text */
+  text-align: center; /* Center content by default */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 2px solid var(--primary-accent); /* Primary neon border */
+  box-shadow: 0 2px 15px var(--box-shadow-color); /* Primary neon glow */
+  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, padding 0.5s ease; /* Smooth transition */
+}
+
+.header-content {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out branding, nav, and button */
+    align-items: center; /* Vertically align items */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    padding: 0 10px; /* Add some horizontal padding */
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Space between branding and nav */
+}
+
+.site-title {
+  margin-bottom: 0; /* Remove bottom margin */
+  margin-right: 10px; /* Space between logo and subtitle */
+}
+
+.site-logo {
+    display: block;
+    margin: 0; /* Remove auto margin */
+    height: 50px; /* Slightly smaller logo in the bar */
+    max-width: 100px; /* Max width for logo */
+    filter: drop-shadow(0 0 8px var(--primary-accent)) drop-shadow(0 0 15px var(--primary-accent));
+    transition: filter 0.5s ease;
+}
+
+.site-subtitle {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem; /* Smaller subtitle */
+  color: var(--light-text);
+  letter-spacing: 1px;
+  transition: color 0.5s ease;
+}
+
+.header-nav {
+    flex-grow: 1; /* Allow nav to take available space */
+    text-align: center; /* Center nav links */
+}
+
+.header-nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.header-nav ul li {
+  display: inline-block;
+  margin: 0 10px; /* Reduced margin */
+}
+
+.nav-link {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 5px 0; /* Adjusted padding */
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+  font-family: 'Roboto Mono', monospace;
+  position: relative;
+  font-size: 0.9rem; /* Slightly smaller nav links */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; /* Adjusted position */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease, background-color 0.5s ease;
+    transform-origin: bottom right;
+}
+
+.nav-link:hover {
+  color: var(--link-hover-color);
+  text-shadow: 0 0 5px var(--link-hover-color);
+  transform: translateY(-2px);
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Animated Text within Header */
+.animated-top-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: var(--primary-accent); /* Use primary color */
+    text-align: center;
+    margin-top: 10px; /* Space below header-content */
+    text-shadow: 0 0 5px var(--primary-accent); /* Subtle glow */
+    animation: pulseGlow 2s ease-in-out infinite alternate; /* Apply animation */
+    transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+    display: flex; /* Use flexbox to align text and icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Vertically align */
+}
+
+.animated-top-text .youtube-link {
+    display: flex; /* Use flexbox for icon alignment */
+    align-items: center;
+    margin-left: 10px; /* Space between text and icon */
+    text-decoration: none; /* Remove underline from link */
+}
+
+.animated-top-text .youtube-icon {
+    display: block; /* Ensure it's a block element */
+    height: 20px; /* Adjust icon size */
+    width: auto;
+    /* SVG from URL might not respect 'fill', but filter should work */
+    filter: drop-shadow(0 0 3px var(--secondary-accent)); /* Subtle glow for icon */
+    transition: filter 0.3s ease; /* Smooth transition for glow */
+}
+
+.animated-top-text .youtube-link:hover .youtube-icon {
+    filter: drop-shadow(0 0 5px var(--primary-accent)); /* Change glow on hover */
+}
+
+
+/* Animation Keyframes */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px var(--primary-accent);
+  }
+  100% {
+    text-shadow: 0 0 15px var(--primary-accent), 0 0 20px var(--primary-accent);
+  }
+}
+
+
+/* Theme Toggle Button - Fixed Position */
+.theme-toggle-button {
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* 20px from the bottom */
+    right: 20px; /* 20px from the right */
+    background-color: transparent;
+    border: 1px solid var(--secondary-accent);
+    color: var(--secondary-accent);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+    border-radius: 5px;
+    z-index: 1001; /* Ensure it's above other content */
+}
+
+body.light-mode .theme-toggle-button {
+     box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+}
+
+
+.theme-toggle-button:hover {
+    color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 8px var(--primary-accent);
+}
+
+
+/* Main Content */
+.main-content {
+  padding: 3rem 0;
+}
+
+.section {
+  background-color: var(--section-bg); /* Dark grey */
+  margin-bottom: 3rem;
+  padding: 2.5rem;
+  border: 1px solid var(--primary-accent); /* Primary neon border */
+  box-shadow: 0 0 15px var(--box-shadow-color); /* Primary subtle glow */
+  position: relative;
+  overflow: hidden; /* For pseudo-elements */
+  border-radius: 10px; /* Added rounded corners */
+  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
+}
+
+/* Section corner effects */
+.section::before,
+.section::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--secondary-accent); /* Secondary color corners */
+    transition: border-color 0.5s ease; /* Smooth transition */
+}
+
+.section::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.section::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--secondary-accent); /* Secondary neon for titles */
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  text-shadow: 0 0 5px var(--secondary-accent);
+  font-size: 2rem;
+  transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-accent); /* Primary color underline */
+  margin: 15px auto 0;
+  box-shadow: 0 0 8px var(--primary-accent);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
+}
+
+.section-body {
+  color: var(--light-text); /* Slightly darker primary text */
   font-family: 'Roboto Mono', monospace;
   font-size: 1rem;
-  font-weight: bold;
-  border: 1px solid var(--secondary-accent);
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 8px rgba(255, 0, 255, 0.5); /* Subtle glow based on secondary color */
+  transition: color 0.5s ease; /* Smooth transition */
+}
+
+.section-body p {
+    margin-bottom: 1.2rem;
+}
+
+.section-body strong {
+    color: var(--primary-accent); /* Primary color for strong text */
+    transition: color 0.5s ease; /* Smooth transition */
+}
+
+/* Creations Gallery */
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.creation-item {
+  background-color: var(--item-bg); /* Very dark */
+  border: 1px solid var(--primary-accent); /* Primary border */
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
+  position: relative;
+  border-radius: 8px; /* Added rounded corners */
+}
+
+.creation-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1)); /* Gradient hover effect */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+body.light-mode .creation-item::before {
+      background: linear-gradient(45deg, rgba(0, 123, 255, 0.1), rgba(220, 53, 69, 0.1)); /* Light mode gradient */
+}
+
+
+.creation-item:hover::before {
+    opacity: 1;
+}
+
+
+.creation-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.8), 0 10px 25px rgba(255, 0, 255, 0.8); /* Dual color glow */
+}
+
+  body.light-mode .creation-item:hover {
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.8), 0 10px 25px rgba(220, 53, 69, 0.8); /* Light mode dual color glow */
+   }
+
+
+.creation-item img {
+  display: block;
+  width: 100%;
+  height: 220px; /* Fixed height for consistency */
+  object-fit: cover; /* Cover the area without distortion */
+  border-bottom: 1px solid var(--secondary-accent); /* Secondary border */
+  transition: transform 0.4s ease, border-color 0.5s ease; /* Smooth transition */
+}
+
+.creation-item:hover img {
+    transform: scale(1.05);
+}
+
+.creation-info {
+  padding: 1.2rem;
+}
+
+.creation-info h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-accent); /* Primary color for item titles */
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 3px var(--primary-accent);
+  font-size: 1.2rem;
+  transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+}
+
+.creation-info p {
+  font-size: 0.9rem;
+  color: var(--light-text);
+  transition: color 0.5s ease; /* Smooth transition */
+}
+
+/* Order Button Style */
+.order-button {
+    display: inline-block; /* Treat like a button */
+    background-color: var(--secondary-accent); /* Use secondary accent color */
+    color: var(--bg-color); /* Use background color for text */
+    padding: 10px 20px;
+    margin-top: 15px; /* Space above the button */
+    text-decoration: none; /* Remove underline */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid var(--secondary-accent);
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.5); /* Subtle glow based on secondary color (adjust alpha for intensity) */
+    position: relative; /* Needed for z-index */
+    z-index: 1; /* Ensure it's above other content in the item */
 }
 
 body.light-mode .order-button {
-  background-color: var(--secondary-accent);
-  color: var(--text-color); /* Dark text in light mode */
-   box-shadow: 0 0 8px rgba(220, 53, 69, 0.5); /* Subtle glow based on secondary color (red) */
+    background-color: var(--secondary-accent);
+    color: var(--text-color); /* Dark text in light mode */
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.5); /* Subtle glow based on secondary color (red) */
 }
 
 
 .order-button:hover {
-  background-color: transparent; /* Transparent background on hover */
-  color: var(--primary-accent); /* Change text color to primary accent */
-  border-color: var(--primary-accent); /* Change border color to primary accent */
-  box-shadow: 0 0 12px var(--primary-accent); /* Stronger glow based on primary color */
+    background-color: transparent; /* Transparent background on hover */
+    color: var(--primary-accent); /* Change text color to primary accent */
+    border-color: var(--primary-accent); /* Change border color to primary accent */
+    box-shadow: 0 0 12px var(--primary-accent); /* Stronger glow based on primary color */
+    z-index: 2; /* Bring forward on hover if needed */
+}
+
+
+/* Price List */
+.price-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.price-item {
+  background-color: var(--item-bg); /* Very dark */
+  border: 1px solid var(--secondary-accent); /* Secondary border */
+  padding: 2rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
+  position: relative;
+  border-radius: 8px; /* Added rounded corners */
+}
+
+.price-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1)); /* Gradient hover effect */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+  body.light-mode .price-item::before {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(0, 123, 255, 0.1)); /* Light mode gradient */
+   }
+
+
+.price-item:hover::before {
+    opacity: 1;
+}
+
+  .price-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(255, 0, 255, 0.8), 0 10px 25px rgba(0, 255, 255, 0.8); /* Dual color glow */
+  }
+
+body.light-mode .price-item:hover {
+    box-shadow: 0 10px 25px rgba(220, 53, 69, 0.8), 0 10px 25px rgba(0, 123, 255, 0.8); /* Light mode dual color glow */
+}
+
+
+.price-item h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--secondary-accent); /* Secondary color for price titles */
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 5px var(--secondary-accent);
+  font-size: 1.5rem;
+  transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+}
+
+.price-item p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-accent); /* Primary color for price text */
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: color 0.5s ease; /* Smooth transition */
+}
+
+.price-item ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.price-item ul li {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat left center; /* Secondary color checkmark */
+  background-size: 18px;
+  padding-left: 30px;
+  margin-bottom: 0.8rem;
+  color: var(--secondary-text); /* Darker secondary text */
+  font-size: 1rem;
+  transition: color 0.5s ease; /* Smooth transition */
+}
+
+body.light-mode .price-item ul li {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat left center; /* Light mode checkmark */
+      color: var(--secondary-accent); /* Light mode secondary text */
+}
+
+
+/* Footer */
+.footer {
+  background-color: var(--mid-dark-bg); /* Dark grey */
+  color: var(--light-text); /* Darker primary text */
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 2px solid var(--primary-accent); /* Primary border */
+  margin-top: 3rem;
+  box-shadow: 0 -2px 15px var(--box-shadow-color); /* Primary glow */
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
+}
+
+.footer p {
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding-top: 180px; /* Adjust for stacked header/nav */
+  }
+
+  .header.fixed-top-bar {
+    position: static; /* Make header static on small screens */
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .header-content {
+      flex-direction: column; /* Stack items vertically */
+      align-items: center;
+  }
+
+  .site-branding {
+      flex-direction: column;
+      align-items: center;
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+
+  .site-title {
+      margin-right: 0;
+      margin-bottom: 5px;
+  }
+
+  .site-logo {
+      margin: 0 auto; /* Center logo when stacked */
+  }
+
+  .site-subtitle {
+      font-size: 0.7rem;
+  }
+
+  .header-nav {
+      width: 100%; /* Nav takes full width */
+      border-top: 1px solid var(--secondary-accent); /* Separator */
+      padding-top: 10px;
+      margin-bottom: 10px;
+  }
+
+  .header-nav ul li {
+    display: block; /* Stack nav links */
+    margin: 5px 0;
+  }
+
+  .nav-link {
+    font-size: 1rem; /* Slightly larger stacked links */
+  }
+
+  .section {
+    padding: 2rem;
+  }
+
+  .site-title {
+    font-size: 2.2rem; /* Keep font size for subtitle */
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  /* Theme toggle button remains fixed */
+  .theme-toggle-button {
+      position: fixed;
+      bottom: 10px; /* Adjust position for smaller screens */
+      right: 10px;
+      font-size: 0.7rem; /* Smaller font */
+      padding: 3px 6px; /* Smaller padding */
+  }
+
+  .animated-top-text {
+      font-size: 1.2rem; /* Smaller text on small screens */
+      margin-top: 5px; /* Adjust margin */
+  }
+
+  .animated-top-text .youtube-icon {
+      height: 16px; /* Smaller icon on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 1.8rem; /* Keep font size for subtitle */
+  }
+
+  .site-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+
+    .animated-top-text {
+      font-size: 1rem; /* Even smaller text on very small screens */
+    }
+
+    .animated-top-text .youtube-icon {
+      height: 14px; /* Even smaller icon */
+    }
+}
+
+/* Placeholder image style */
+img[alt^="Creation"] {
+    background-color: var(--dark-bg); /* Dark background for placeholders */
+    border: 1px dashed var(--secondary-accent); /* Dashed secondary border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-text); /* Darker secondary text */
+    font-size: 0.9rem;
+    text-align: center;
 }
