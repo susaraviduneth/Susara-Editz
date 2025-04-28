@@ -55,7 +55,7 @@ const fullscreenImage = document.getElementById('fullscreen-image');
 const closeButton = document.querySelector('.fullscreen-modal .close-button');
 const creationImages = document.querySelectorAll('.creation-item img'); // Select images within creation items
 
-// Add click and touchstart event listeners to each creation image
+// Add click and touchend event listeners to each creation image
 creationImages.forEach(image => {
     // Add click listener for desktop/mouse
     image.addEventListener('click', function() {
@@ -65,8 +65,8 @@ creationImages.forEach(image => {
         fullscreenModal.classList.add('is-visible');
     });
 
-    // Add touchstart listener for mobile/touch
-    image.addEventListener('touchstart', function(e) {
+    // Add touchend listener for mobile/touch (more reliable for taps)
+    image.addEventListener('touchend', function(e) {
         // Prevent potential default touch behaviors like scrolling or zooming
         e.preventDefault();
         // Set the clicked image's source to the fullscreen image
