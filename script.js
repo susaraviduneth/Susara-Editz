@@ -55,7 +55,11 @@ const fullscreenImage = document.getElementById('fullscreen-image');
 const closeButton = document.querySelector('.fullscreen-modal .close-button');
 const creationImages = document.querySelectorAll('.creation-item img'); // Select images within creation items
 
-// Add click and touchend event listeners to each creation image
+let touchStartX = 0;
+let touchStartY = 0;
+const tapThreshold = 10; // Distance in pixels to consider a tap
+
+// Add event listeners to each creation image
 creationImages.forEach(image => {
     // Add click listener for desktop/mouse
     image.addEventListener('click', function() {
@@ -65,14 +69,32 @@ creationImages.forEach(image => {
         fullscreenModal.classList.add('is-visible');
     });
 
-    // Add touchend listener for mobile/touch (more reliable for taps)
+    // Add touchstart listener to record the starting position
+    image.addEventListener('touchstart', function(e) {
+        // Record the starting touch coordinates
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    });
+
+    // Add touchend listener to check if it was a tap
     image.addEventListener('touchend', function(e) {
-        // Prevent potential default touch behaviors like scrolling or zooming
-        e.preventDefault();
-        // Set the clicked image's source to the fullscreen image
-        fullscreenImage.src = this.src;
-        // Add the 'is-visible' class to display the modal using flexbox
-        fullscreenModal.classList.add('is-visible');
+        // Calculate the distance moved
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const distanceX = Math.abs(touchEndX - touchStartX);
+        const distanceY = Math.abs(touchEndY - touchStartY);
+
+        // If the touch moved less than the threshold, treat it as a tap
+        if (distanceX < tapThreshold && distanceY < tapThreshold) {
+            // Prevent default behavior only if it's a tap to avoid triggering click and touchend
+             e.preventDefault(); // Prevent potential double-triggering or default touch actions
+
+            // Set the clicked image's source to the fullscreen image
+            fullscreenImage.src = this.src;
+            // Add the 'is-visible' class to display the modal using flexbox
+            fullscreenModal.classList.add('is-visible');
+        }
+        // If it was a drag/scroll, do nothing, allowing default scroll behavior
     });
 });
 
