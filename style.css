@@ -24,6 +24,12 @@
     --nav-bg: rgba(13, 13, 13, 0.9); /* This variable is now less relevant as nav is inside header */
     --mid-dark-bg: #0d0d0d; /* Added for footer/other mid-dark elements */
     --dark-bg: #000000; /* Added for placeholder background */
+
+    /* Icon Colors */
+    --icon-color-dark: var(--secondary-accent); /* Magenta icon in dark mode */
+    --icon-hover-color-dark: var(--primary-accent); /* Cyan icon on hover in dark mode */
+    --icon-color-light: var(--secondary-accent); /* Red icon in light mode */
+    --icon-hover-color-light: var(--primary-accent); /* Blue icon on hover in light mode */
 }
 
 body.light-mode {
@@ -45,6 +51,9 @@ body.light-mode {
     --nav-bg: rgba(240, 240, 240, 0.9); /* This variable is now less relevant */
     --mid-dark-bg: #dcdcdc; /* Added for footer/other mid-dark elements */
     --dark-bg: #cccccc; /* Added for placeholder background */
+
+    /* Icon Colors */
+    /* These are defined in :root but overridden here for light mode */
 }
 
 
@@ -247,26 +256,57 @@ body, .section-body[lang="si"] {
     right: 20px; /* 20px from the right */
     background-color: transparent;
     border: 1px solid var(--secondary-accent);
-    color: var(--secondary-accent);
+    color: transparent; /* Hide the text */
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    padding: 5px 10px;
+    font-size: 0; /* Hide text visually */
+    padding: 10px; /* Adjust padding for icon size */
     cursor: pointer;
-    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
     border-radius: 5px;
     z-index: 1001; /* Ensure it's above other content */
+    width: 40px; /* Set a fixed width and height for the button */
+    height: 40px;
+    display: flex; /* Use flexbox to center the icon */
+    justify-content: center;
+    align-items: center;
 }
 
-body.light-mode .theme-toggle-button {
-     box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+/* Icon for Dark Mode (Default) */
+.theme-toggle-button::before {
+    content: '';
+    display: block;
+    width: 24px; /* Icon size */
+    height: 24px; /* Icon size */
+    /* Moon icon SVG data URL */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>');
+    background-size: cover;
+    transition: background-image 0.3s ease;
+}
+
+/* Icon for Light Mode */
+body.light-mode .theme-toggle-button::before {
+    /* Sun icon SVG data URL */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
+     box-shadow: 0 0 5px rgba(220, 53, 69, 0.3); /* Light mode box shadow */
 }
 
 
 .theme-toggle-button:hover {
-    color: var(--primary-accent);
-    border-color: var(--primary-accent);
-    box-shadow: 0 0 8px var(--primary-accent);
+    border-color: var(--primary-accent); /* Change border color to primary accent */
+    box-shadow: 0 0 8px var(--primary-accent); /* Stronger glow based on primary color */
+}
+
+/* Hover effect for the icon */
+.theme-toggle-button:hover::before {
+    /* The SVG stroke color is set within the data URL, so we change the URL on hover */
+    /* Dark mode hover icon (Cyan) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300aeff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>');
+}
+
+body.light-mode .theme-toggle-button:hover::before {
+     /* Light mode hover icon (Blue) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
 }
 
 
@@ -642,9 +682,17 @@ body.light-mode .price-item ul li {
       position: fixed;
       bottom: 10px; /* Adjust position for smaller screens */
       right: 10px;
-      font-size: 0.7rem; /* Smaller font */
-      padding: 3px 6px; /* Smaller padding */
+      font-size: 0; /* Hide text */
+      padding: 8px; /* Adjust padding for icon size */
+      width: 36px; /* Adjust size */
+      height: 36px; /* Adjust size */
   }
+
+    .theme-toggle-button::before {
+        width: 20px; /* Adjust icon size */
+        height: 20px; /* Adjust icon size */
+    }
+
 
   .animated-top-text {
       font-size: 1.2rem; /* Smaller text on small screens */
