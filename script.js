@@ -55,9 +55,20 @@ const fullscreenImage = document.getElementById('fullscreen-image');
 const closeButton = document.querySelector('.fullscreen-modal .close-button');
 const creationImages = document.querySelectorAll('.creation-item img'); // Select images within creation items
 
-// Add click event listener to each creation image
+// Add click and touchstart event listeners to each creation image
 creationImages.forEach(image => {
+    // Add click listener for desktop/mouse
     image.addEventListener('click', function() {
+        // Set the clicked image's source to the fullscreen image
+        fullscreenImage.src = this.src;
+        // Add the 'is-visible' class to display the modal using flexbox
+        fullscreenModal.classList.add('is-visible');
+    });
+
+    // Add touchstart listener for mobile/touch
+    image.addEventListener('touchstart', function(e) {
+        // Prevent potential default touch behaviors like scrolling or zooming
+        e.preventDefault();
         // Set the clicked image's source to the fullscreen image
         fullscreenImage.src = this.src;
         // Add the 'is-visible' class to display the modal using flexbox
@@ -65,7 +76,7 @@ creationImages.forEach(image => {
     });
 });
 
-// Add click event listener to the close button
+// Add click event listener to the close button (handles both mouse and touch taps)
 closeButton.addEventListener('click', function() {
     // Remove the 'is-visible' class to hide the modal
     fullscreenModal.classList.remove('is-visible');
@@ -73,9 +84,9 @@ closeButton.addEventListener('click', function() {
     fullscreenImage.src = '';
 });
 
-// Close the modal if the user clicks outside the image
+// Close the modal if the user clicks outside the image (handles both mouse and touch taps on background)
 fullscreenModal.addEventListener('click', function(event) {
-    // Check if the click target is the modal background itself, not the image
+    // Check if the click target is the modal background itself, not the image or close button
     if (event.target === fullscreenModal) {
         // Remove the 'is-visible' class to hide the modal
         fullscreenModal.classList.remove('is-visible');
