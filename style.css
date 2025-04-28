@@ -17,7 +17,7 @@
     --link-hover-color: var(--primary-accent);
     --section-bg: #1a1a1a;
     --item-bg: #0a0a0a;
-    --grid-color: rgba(0, 255, 255, 0.05);
+    /* --grid-color: rgba(0, 255, 255, 0.05); Removed grid color */
     --light-text: #00cccc; /* Darker Cyan */
     --secondary-text: #cc00cc; /* Darker Magenta */
     --header-bg: rgba(13, 13, 13, 0.9);
@@ -30,6 +30,14 @@
     --icon-hover-color-dark: var(--primary-accent); /* Cyan icon on hover in dark mode */
     --icon-color-light: var(--secondary-accent); /* Red icon in light mode */
     --icon-hover-color-light: var(--primary-accent); /* Blue icon on hover in light mode */
+
+    /* Modal Colors */
+    --modal-bg: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+    --close-button-color: var(--text-color);
+    --close-button-hover-color: var(--primary-accent);
+
+    /* Green button color */
+    --button-green: #39FF14; /* Neon Green */
 }
 
 body.light-mode {
@@ -44,7 +52,7 @@ body.light-mode {
     --link-hover-color: var(--primary-accent);
     --section-bg: #ffffff;
     --item-bg: #eeeeee;
-    --grid-color: rgba(0, 0, 0, 0.05);
+    /* --grid-color: rgba(0, 0, 0, 0.05); Removed grid color */
     --light-text: #555; /* Lighter Dark Grey */
     --secondary-text: #a02a37; /* Darker Red */
     --header-bg: rgba(240, 240, 240, 0.9);
@@ -54,6 +62,11 @@ body.light-mode {
 
     /* Icon Colors */
     /* These are defined in :root but overridden here for light mode */
+
+    /* Modal Colors */
+    --modal-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    --close-button-color: var(--text-color);
+    --close-button-hover-color: var(--primary-accent);
 }
 
 
@@ -74,20 +87,21 @@ body, .section-body[lang="si"] {
 }
 
 
-/* Background Grid Effect */
+/* Background Grid Effect (now background image) */
 .background-grid {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image:
-        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-    background-size: 40px 40px;
+    /* Removed grid background image */
+    background-image: url('https://media-hosting.imagekit.io/e9b718c5e5994a66/Untitled-55%20-%20My%20Logo.jpg?Expires=1840443578&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=TABp-7WeOQK7PGI2uOuiC0JEZBxJoHc-A0I9ROFVpVcCa0XfTfIYRrA9sE8Ah6vvDvNUDRZ8RZ6MeQRYxTa9pfxuNg~FfvIlgM6l44NnpU-GHp-wHm8lHqSTJS2d9RO330VkFT-XQQ9ze7cxlMfGuKmGcTi28bEd85yXrMADdixZZ2~NLXDo1-oEPPOM~x8oKRzhR75l442BNQIZNw52V0UBlPT0noQ0hVteLCES39oFH9em57ahq5bqRoI~GYEJN5okQ~FHweeMoQ4UkdpSWiviCEX6I1LFcKaIeMybn1IvX6~m4wiCQVJFTL-j~8-zVMA4-6GI4VuYWUX~4kgGAj7A__'); /* Added background image */
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Fix the image position */
     z-index: -1; /* Send to back */
-    opacity: 0.2;
-    transition: background-image 0.5s ease; /* Smooth transition */
+    opacity: 0.4; /* Set opacity to 40% */
+    transition: opacity 0.5s ease; /* Smooth transition for opacity */
 }
 
 
@@ -138,8 +152,8 @@ body, .section-body[lang="si"] {
     margin: 0; /* Remove auto margin */
     height: 50px; /* Slightly smaller logo in the bar */
     max-width: 100px; /* Max width for logo */
-    filter: drop-shadow(0 0 8px var(--primary-accent)) drop-shadow(0 0 15px var(--primary-accent));
-    transition: filter 0.5s ease;
+    /* Removed filter: drop-shadow(0 0 8px var(--primary-accent)) drop-shadow(0 0 15px var(--primary-accent)); */
+    transition: filter 0.5s ease; /* Keep transition if needed for other effects */
 }
 
 .site-subtitle {
@@ -228,13 +242,13 @@ body, .section-body[lang="si"] {
     display: block; /* Ensure it's a block element */
     height: 20px; /* Adjust icon size */
     width: auto;
-    /* SVG from URL might not respect 'fill', but filter should work */
-    filter: drop-shadow(0 0 3px var(--secondary-accent)); /* Subtle glow for icon */
-    transition: filter 0.3s ease; /* Smooth transition for glow */
+    /* Removed filter: drop-shadow() */
+    transition: none; /* Remove transition for filter */
 }
 
 .animated-top-text .youtube-link:hover .youtube-icon {
-    filter: drop-shadow(0 0 5px var(--primary-accent)); /* Change glow on hover */
+    /* Removed filter: drop-shadow() */
+    transition: none; /* Remove transition for filter */
 }
 
 
@@ -247,6 +261,12 @@ body, .section-body[lang="si"] {
     text-shadow: 0 0 15px var(--primary-accent), 0 0 20px var(--primary-accent);
   }
 }
+
+/* Removed Rainbow Animation Keyframes */
+/* @keyframes rotateRainbow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+} */
 
 
 /* Theme Toggle Button - Fixed Position */
@@ -407,6 +427,7 @@ body.light-mode .theme-toggle-button:hover::before {
   transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
   position: relative;
   border-radius: 8px; /* Added rounded corners */
+  cursor: pointer; /* Indicate clickable */
 }
 
 .creation-item::before {
@@ -438,7 +459,7 @@ body.light-mode .creation-item::before {
 
   body.light-mode .creation-item:hover {
     box-shadow: 0 10px 25px rgba(0, 123, 255, 0.8), 0 10px 25px rgba(220, 53, 69, 0.8); /* Light mode dual color glow */
-   }
+}
 
 
 .creation-item img {
@@ -476,36 +497,86 @@ body.light-mode .creation-item::before {
 /* Order Button Style */
 .order-button {
     display: inline-block; /* Treat like a button */
-    background-color: var(--secondary-accent); /* Use secondary accent color */
-    color: var(--bg-color); /* Use background color for text */
+    /* Set background color to green for dark mode */
+    background-color: var(--button-green);
+    /* Set text color to black for dark mode */
+    color: var(--bg-color);
     padding: 10px 20px;
     margin-top: 15px; /* Space above the button */
     text-decoration: none; /* Remove underline */
     font-family: 'Roboto Mono', monospace;
     font-size: 1rem;
     font-weight: bold;
-    border: 1px solid var(--secondary-accent);
+    /* Set border color to green for dark mode */
+    border: 1px solid var(--button-green);
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 8px rgba(255, 0, 255, 0.5); /* Subtle glow based on secondary color (adjust alpha for intensity) */
+    /* Set box shadow to green for dark mode */
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.5); /* Subtle glow based on neon green */
     position: relative; /* Needed for z-index */
     z-index: 1; /* Ensure it's above other content in the item */
+    /* Removed animation and pseudo-element styles */
 }
 
+/* Removed Pseudo-element styles */
+/* .order-button::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+    background-repeat: no-repeat;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateRainbow 4s linear infinite;
+} */
+
+
 body.light-mode .order-button {
-    background-color: var(--secondary-accent);
-    color: var(--text-color); /* Dark text in light mode */
-    box-shadow: 0 0 8px rgba(220, 53, 69, 0.5); /* Subtle glow based on secondary color (red) */
+    /* Set background color to green for light mode */
+    background-color: var(--button-green);
+    /* Set text color to dark grey for light mode */
+    color: var(--text-color);
+    /* Set border color to green for light mode */
+    border: 1px solid var(--button-green);
+    /* Set box shadow to green for light mode */
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.5); /* Subtle glow based on neon green */
+    /* Removed animation and pseudo-element styles */
 }
+
+/* Removed Pseudo-element styles for light mode */
+/* body.light-mode .order-button::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+    background-repeat: no-repeat;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateRainbow 4s linear infinite;
+} */
 
 
 .order-button:hover {
     background-color: transparent; /* Transparent background on hover */
-    color: var(--primary-accent); /* Change text color to primary accent */
-    border-color: var(--primary-accent); /* Change border color to primary accent */
+    color: var(--primary-accent); /* Change text color to primary accent on hover */
+    /* Add border and box-shadow on hover */
+    border: 1px solid var(--primary-accent);
     box-shadow: 0 0 12px var(--primary-accent); /* Stronger glow based on primary color */
-    z-index: 2; /* Bring forward on hover if needed */
+    z-index: 2; /* Bring button content forward on hover */
+    /* Removed animation stop on hover */
+    /* animation: none; */
 }
+
+/* Removed pseudo-element animation stop on button hover */
+/* .order-button:hover::before {
+    animation: none;
+} */
 
 
 /* Price List */
@@ -590,7 +661,7 @@ body.light-mode .price-item:hover {
 }
 
 body.light-mode .price-item ul li {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat left center; /* Light mode checkmark */
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>') no-repeat left center; /* Light mode checkmark */
       color: var(--secondary-accent); /* Light mode secondary text */
 }
 
@@ -611,6 +682,60 @@ body.light-mode .price-item ul li {
   font-size: 0.9rem;
   font-family: 'Roboto Mono', monospace;
 }
+
+/* Fullscreen Modal Styles */
+.fullscreen-modal {
+    /* Initially hidden */
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--modal-bg); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    /* Removed display: flex from here */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style to show the modal using flexbox */
+.fullscreen-modal.is-visible {
+    display: flex;
+}
+
+
+.fullscreen-modal img {
+    max-width: 90%; /* Max width of the image */
+    max-height: 90%; /* Max height of the image */
+    display: block; /* Remove extra space below image */
+    margin: auto; /* Center the image */
+    object-fit: contain; /* Contain the image within its bounds */
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--close-button-color);
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    text-shadow: 0 0 5px var(--close-button-color);
+    z-index: 2001; /* Ensure button is above image */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--close-button-hover-color);
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 0 10px var(--close-button-hover-color);
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -725,13 +850,17 @@ body.light-mode .price-item ul li {
     padding: 1.5rem;
   }
 
-    .animated-top-text {
-      font-size: 1rem; /* Even smaller text on very small screens */
+    /* Adjust modal image size on very small screens */
+    .fullscreen-modal img {
+        max-width: 95%;
+        max-height: 95%;
     }
 
-    .animated-top-text .youtube-icon {
-      height: 14px; /* Even smaller icon */
-    }
+     .close-button {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+     }
 }
 
 /* Placeholder image style */
