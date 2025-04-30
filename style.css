@@ -6,67 +6,88 @@
 }
 
 :root {
-    /* Dark Mode Colors */
-    --bg-color: #000000;
-    --text-color: #ffffff; /* Primary Cyan */
-    --primary-accent: #00aeff; /* Cyan */
-    --secondary-accent: #ff00ff; /* Magenta - Corrected from white */
-    --border-color: var(--primary-accent);
-    --box-shadow-color: rgba(255, 255, 255, 0.274);
-    --link-color: var(--secondary-accent);
-    --link-hover-color: var(--primary-accent);
-    --section-bg: #1a1a1a;
-    --item-bg: #0a0a0a;
-    /* --grid-color: rgba(0, 255, 255, 0.05); Removed grid color */
-    --light-text: #00cccc; /* Darker Cyan */
-    --secondary-text: #cc00cc; /* Darker Magenta */
-    --header-bg: rgba(13, 13, 13, 0.9);
-    --nav-bg: rgba(13, 13, 13, 0.9); /* This variable is now less relevant as nav is inside header */
-    --mid-dark-bg: #0d0d0d; /* Added for footer/other mid-dark elements */
-    --dark-bg: #000000; /* Added for placeholder background */
+  /* Dark Mode Colors */
+  --bg-color: #000000;
+  --text-color: #ffffff; /* Primary Cyan */
+  --primary-accent: #00aeff; /* Cyan */
+  --secondary-accent: #ff00ff; /* Magenta - Corrected from white */
+  --border-color: var(--primary-accent);
+  --box-shadow-color: rgba(255, 255, 255, 0.274);
+  --link-color: var(--secondary-accent);
+  --link-hover-color: var(--primary-accent);
+  /* Updated section background to be semi-transparent */
+  --section-bg: rgba(26, 26, 26, 0.8); /* #1a1a1a with 80% opacity */
+  --item-bg: #0a0a0a;
+  /* --grid-color: rgba(0, 255, 255, 0.05); Removed grid color */
+  --light-text: #00cccc; /* Darker Cyan */
+  --secondary-text: #cc00cc; /* Darker Magenta */
+  --header-bg: rgba(13, 13, 13, 0.9);
+  --nav-bg: rgba(13, 13, 13, 0.9); /* This variable is now less relevant as nav is inside header */
+  --mid-dark-bg: #0d0d0d; /* Added for footer/other mid-dark elements */
+  --dark-bg: #000000; /* Added for placeholder background */
 
-    /* Icon Colors */
-    --icon-color-dark: var(--secondary-accent); /* Magenta icon in dark mode */
-    --icon-hover-color-dark: var(--primary-accent); /* Cyan icon on hover in dark mode */
-    --icon-color-light: var(--secondary-accent); /* Red icon in light mode */
-    --icon-hover-color-light: var(--primary-accent); /* Blue icon on hover in light mode */
+  /* Icon Colors */
+  --icon-color-dark: var(--secondary-accent); /* Magenta icon in dark mode */
+  --icon-hover-color-dark: var(--primary-accent); /* Cyan icon on hover in dark mode */
+  --icon-color-light: var(--secondary-accent); /* Red icon in light mode */
+  --icon-hover-color-light: var(--primary-accent); /* Blue icon on hover in light mode */
 
-    /* Modal Colors */
-    --modal-bg: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
-    --close-button-color: var(--text-color);
-    --close-button-hover-color: var(--primary-accent);
+  /* Modal Colors */
+  --modal-bg: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+  --close-button-color: var(--text-color);
+  --close-button-hover-color: var(--primary-accent);
+  --modal-text-color: var(--primary-accent); /* Color for modal text like price */
 
-    /* Green button color */
-    --button-green: #39FF14; /* Neon Green */
+
+  /* Green button color */
+  --button-green: #39FF14; /* Neon Green */
+
+  /* Gradient Colors for Text/Elements */
+  --gradient-start: var(--primary-accent); /* Cyan */
+  --gradient-end: var(--secondary-accent); /* Magenta */
+
+  /* WhatsApp Icon Color (kept for reference, but not used for button background/border) */
+  --whatsapp-color: #25D366; /* WhatsApp Green */
+  --whatsapp-hover-color: #128C7E; /* Darker WhatsApp Green */
 }
 
 body.light-mode {
-    /* Light Mode Colors */
-    --bg-color: #f0f0f0;
-    --text-color: #333; /* Dark Grey */
-    --primary-accent: #007bff; /* Blue */
-    --secondary-accent: #dc3545; /* Red */
-    --border-color: var(--primary-accent);
-    --box-shadow-color: rgba(0, 123, 255, 0.3);
-    --link-color: var(--secondary-accent);
-    --link-hover-color: var(--primary-accent);
-    --section-bg: #ffffff;
-    --item-bg: #eeeeee;
-    /* --grid-color: rgba(0, 0, 0, 0.05); Removed grid color */
-    --light-text: #555; /* Lighter Dark Grey */
-    --secondary-text: #a02a37; /* Darker Red */
-    --header-bg: rgba(240, 240, 240, 0.9);
-    --nav-bg: rgba(240, 240, 240, 0.9); /* This variable is now less relevant */
-    --mid-dark-bg: #dcdcdc; /* Added for footer/other mid-dark elements */
-    --dark-bg: #cccccc; /* Added for placeholder background */
+  /* Light Mode Colors */
+  --bg-color: #f0f0f0;
+  --text-color: #333; /* Dark Grey */
+  --primary-accent: #007bff; /* Blue */
+  --secondary-accent: #dc3545; /* Red */
+  --border-color: var(--primary-accent);
+  --box-shadow-color: rgba(0, 123, 255, 0.3);
+  --link-color: var(--secondary-accent);
+  --link-hover-color: var(--primary-accent);
+  /* Updated section background to be semi-transparent */
+  --section-bg: rgba(255, 255, 255, 0.8); /* #ffffff with 80% opacity */
+  --item-bg: #eeeeee;
+  /* --grid-color: rgba(0, 0, 0, 0.05); Removed grid color */
+  --light-text: #555; /* Lighter Dark Grey */
+  --secondary-text: #a02a37; /* Darker Red */
+  --header-bg: rgba(240, 240, 240, 0.9);
+  --nav-bg: rgba(240, 240, 240, 0.9); /* This variable is now less relevant */
+  --mid-dark-bg: #dcdcdc; /* Added for footer/other mid-dark elements */
+  --dark-bg: #cccccc; /* Added for placeholder background */
 
-    /* Icon Colors */
-    /* These are defined in :root but overridden here for light mode */
+  /* Icon Colors */
+  /* These are defined in :root but overridden here for light mode */
 
-    /* Modal Colors */
-    --modal-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-    --close-button-color: var(--text-color);
-    --close-button-hover-color: var(--primary-accent);
+  /* Modal Colors */
+  --modal-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  --close-button-color: var(--text-color);
+  --close-button-hover-color: var(--primary-accent);
+  --modal-text-color: var(--primary-accent); /* Color for modal text like price */
+
+  /* Gradient Colors for Text/Elements */
+  --gradient-start: var(--primary-accent); /* Blue */
+  --gradient-end: var(--secondary-accent); /* Red */
+
+   /* WhatsApp Icon Color */
+  --whatsapp-color: #25D366; /* WhatsApp Green */
+  --whatsapp-hover-color: #128C7E; /* Darker WhatsApp Green */
 }
 
 
@@ -77,7 +98,7 @@ body {
   line-height: 1.7;
   padding-top: 160px; /* Adjusted padding for the new fixed header height */
   overflow-x: hidden; /* Prevent horizontal scroll */
-  position: relative; /* Needed for background grid */
+  position: relative; /* Needed for button positioning */
   transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
 }
 
@@ -94,8 +115,8 @@ body, .section-body[lang="si"] {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Removed grid background image */
-    background-image: url('https://media-hosting.imagekit.io/e9b718c5e5994a66/Untitled-55%20-%20My%20Logo.jpg?Expires=1840443578&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=TABp-7WeOQK7PGI2uOuiC0JEZBxJoHc-A0I9ROFVpVcCa0XfTfIYRrA9sE8Ah6vvDvNUDRZ8RZ6MeQRYxTa9pfxuNg~FfvIlgM6l44NnpU-GHp-wHm8lHqSTJS2d9RO330VkFT-XQQ9ze7cxlMfGuKmGcTi28bEd85yXrMADdixZZ2~NLXDo1-oEPPOM~x8oKRzhR75l442BNQIZNw52V0UBlPT0noQ0hVteLCES39oFH9em57ahq5bqRoI~GYEJN5okQ~FHweeMoQ4UkdpSWiviCEX6I1LFcKaIeMybn1IvX6~m4wiCQVJFTL-j~8-zVMA4-6GI4VuYWUX~4kgGAj7A__'); /* Added background image */
+    /* Updated background image to the animated GIF */
+    background-image: url('https://clipart-library.com/images/ATbrBq9pc.gif');
     background-size: cover; /* Cover the entire background */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-attachment: fixed; /* Fix the image position */
@@ -216,13 +237,77 @@ body, .section-body[lang="si"] {
     transform-origin: bottom left;
 }
 
+
+/* Filter Buttons Container */
+.filter-buttons {
+    text-align: center; /* Center the buttons */
+    margin-top: 10px; /* Space above the animated text */
+    margin-bottom: 20px; /* Space below the buttons */
+    display: flex; /* Use flexbox for button layout */
+    justify-content: center; /* Center buttons horizontally */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    gap: 10px; /* Space between buttons */
+}
+
+/* Filter Button Style */
+.filter-button {
+    background-color: transparent;
+    border: 1px solid var(--secondary-accent);
+    color: var(--secondary-accent);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    text-shadow: 0 0 3px rgba(255, 0, 255, 0.3);
+}
+
+body.light-mode .filter-button {
+    border-color: var(--secondary-accent);
+    color: var(--secondary-accent);
+    text-shadow: 0 0 3px rgba(220, 53, 69, 0.3);
+}
+
+
+.filter-button:hover {
+    background-color: var(--secondary-accent);
+    color: var(--bg-color); /* Text color changes to background color on hover */
+    box-shadow: 0 0 8px var(--secondary-accent);
+    text-shadow: none; /* Remove text shadow on hover */
+}
+
+body.light-mode .filter-button:hover {
+    background-color: var(--secondary-accent);
+    color: var(--bg-color);
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+}
+
+
+/* Active Filter Button Style */
+.filter-button.active {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: var(--bg-color); /* Text color changes to background color when active */
+    box-shadow: 0 0 10px var(--primary-accent);
+    text-shadow: none; /* Remove text shadow when active */
+}
+
+body.light-mode .filter-button.active {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+
 /* Animated Text within Header */
 .animated-top-text {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.5rem; /* Adjust size as needed */
     color: var(--primary-accent); /* Use primary color */
     text-align: center;
-    margin-top: 10px; /* Space below header-content */
+    margin-top: 10px; /* Space below filter buttons */
     text-shadow: 0 0 5px var(--primary-accent); /* Subtle glow */
     animation: pulseGlow 2s ease-in-out infinite alternate; /* Apply animation */
     transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
@@ -301,7 +386,7 @@ body, .section-body[lang="si"] {
 body.light-mode .theme-toggle-button::before {
     /* Sun icon SVG data URL */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
-     box-shadow: 0 0 5px rgba(220, 53, 69, 0.3); /* Light mode box shadow */
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3); /* Light mode box shadow */
 }
 
 
@@ -318,8 +403,49 @@ body.light-mode .theme-toggle-button::before {
 }
 
 body.light-mode .theme-toggle-button:hover::before {
-     /* Light mode hover icon (Blue) */
+    /* Light mode hover icon (Blue) */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
+}
+
+/* WhatsApp Button - Fixed Position */
+.whatsapp-button {
+    position: fixed; /* Fixed position */
+    bottom: 70px; /* Position above theme toggle (20px + button height + some space) */
+    right: 20px; /* 20px from the right */
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ffffff; /* White border */
+    padding: 3px; /* Reduced padding further */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; /* Removed box-shadow transition */
+    /* Removed box-shadow */
+    border-radius: 5px;
+    z-index: 1001; /* Ensure it's above other content */
+    width: 35px; /* Reduced width */
+    height: 35px; /* Reduced height */
+    display: flex; /* Use flexbox to center the icon */
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Remove underline */
+}
+
+.whatsapp-button img {
+    display: block; /* Ensure image is a block element */
+    width: 100%; /* Make image fill the button width */
+    height: 100%; /* Make image fill the button height */
+    object-fit: contain; /* Ensure the entire image is visible without stretching */
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+
+.whatsapp-button:hover {
+    background-color: #f0f0f0; /* Slightly grey on hover */
+    border-color: #f0f0f0; /* Slightly grey border on hover */
+    /* Removed box-shadow on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.whatsapp-button:hover img {
+     transform: scale(1.1); /* Slightly scale up the image on hover */
 }
 
 
@@ -338,7 +464,19 @@ body.light-mode .theme-toggle-button:hover::before {
   overflow: hidden; /* For pseudo-elements */
   border-radius: 10px; /* Added rounded corners */
   transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
+  /* Initial state for fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  /* Animation applied when the 'fade-in' class is added by JavaScript */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
+
+/* Class to trigger the fade-in animation */
+.section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 /* Section corner effects */
 .section::before,
@@ -368,14 +506,22 @@ body.light-mode .theme-toggle-button:hover::before {
 
 .section-title {
   font-family: 'Orbitron', sans-serif;
-  color: var(--secondary-accent); /* Secondary neon for titles */
+  /* Removed color property for gradient text */
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
   padding-bottom: 15px;
-  text-shadow: 0 0 5px var(--secondary-accent);
+  /* Removed text-shadow for gradient text */
   font-size: 2rem;
   transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+
+  /* Added Gradient Text */
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Ensure text-shadow is off for gradient */
+  text-shadow: none;
 }
 
 .section-title::after {
@@ -402,6 +548,7 @@ body.light-mode .theme-toggle-button:hover::before {
 
 .section-body strong {
     color: var(--primary-accent); /* Primary color for strong text */
+    font-weight: bold; /* Ensure strong text is bold */
     transition: color 0.5s ease; /* Smooth transition */
 }
 
@@ -417,11 +564,29 @@ body.light-mode .theme-toggle-button:hover::before {
   border: 1px solid var(--primary-accent); /* Primary border */
   overflow: hidden;
   text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
+  /* Added transition for opacity and transform for hover/filter effects */
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease, opacity 0.5s ease;
   position: relative;
   border-radius: 8px; /* Added rounded corners */
   cursor: pointer; /* Indicate clickable */
+  /* Initial state for fade-in animation */
+  opacity: 0;
+  transform: scale(0.95);
 }
+
+/* Animation for creation items appearing */
+.creation-item.fade-in {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Style for hidden items (for filtering) */
+.creation-item.hidden {
+  display: none; /* Use display: none for filtering */
+  /* Removed opacity and transition here as display: none handles hiding */
+}
+
 
 .creation-item::before {
     content: '';
@@ -436,7 +601,7 @@ body.light-mode .theme-toggle-button:hover::before {
 }
 
 body.light-mode .creation-item::before {
-      background: linear-gradient(45deg, rgba(0, 123, 255, 0.1), rgba(220, 53, 69, 0.1)); /* Light mode gradient */
+     background: linear-gradient(45deg, rgba(0, 123, 255, 0.1), rgba(220, 53, 69, 0.1)); /* Light mode gradient */
 }
 
 
@@ -452,7 +617,7 @@ body.light-mode .creation-item::before {
 
   body.light-mode .creation-item:hover {
     box-shadow: 0 10px 25px rgba(0, 123, 255, 0.8), 0 10px 25px rgba(220, 53, 69, 0.8); /* Light mode dual color glow */
-}
+   }
 
 
 .creation-item img {
@@ -470,6 +635,7 @@ body.light-mode .creation-item::before {
 
 .creation-info {
   padding: 1.2rem;
+  text-align: center;
 }
 
 .creation-info h3 {
@@ -503,7 +669,7 @@ body.light-mode .creation-item::before {
     /* Set border color to green for dark mode */
     border: 1px solid var(--button-green);
     border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; /* Added transform transition */
     /* Set box shadow to green for dark mode */
     box-shadow: 0 0 8px rgba(57, 255, 20, 0.5); /* Subtle glow based on neon green */
     position: relative; /* Needed for z-index */
@@ -527,6 +693,7 @@ body.light-mode .order-button {
     color: var(--primary-accent); /* Change text color to primary accent */
     border-color: var(--primary-accent); /* Change border color to primary accent */
     box-shadow: 0 0 12px var(--primary-accent); /* Stronger glow based on primary color */
+    transform: scale(1.05); /* Slightly scale up on hover */
     z-index: 2; /* Bring forward on hover if needed */
 }
 
@@ -542,11 +709,23 @@ body.light-mode .order-button {
   background-color: var(--item-bg); /* Very dark */
   border: 1px solid var(--secondary-accent); /* Secondary border */
   padding: 2rem;
+  text-align: center; /* Kept text-align: center for price item */
   transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
   position: relative;
   overflow: hidden; /* For pseudo-elements */
   border-radius: 8px; /* Added rounded corners */
+  /* Initial state for fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
 }
+
+/* Animation for price items appearing */
+.price-item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
 
 .price-item::before {
     content: '';
@@ -562,7 +741,7 @@ body.light-mode .order-button {
 
   body.light-mode .price-item::before {
       background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(0, 123, 255, 0.1)); /* Light mode gradient */
-   }
+    }
 
 
 .price-item:hover::before {
@@ -601,6 +780,7 @@ body.light-mode .price-item:hover {
 .price-item ul {
   list-style: none;
   padding-left: 0;
+  margin-top: 1rem; /* Added margin-top to space list from price text */
 }
 
 .price-item ul li {
@@ -655,24 +835,50 @@ body.light-mode .price-item ul li {
     overflow: auto; /* Enable scroll if needed */
     background-color: var(--modal-bg); /* Semi-transparent background */
     backdrop-filter: blur(10px); /* Blur effect */
-    /* Removed display: flex from here */
-    justify-content: center;
-    align-items: center;
+    display: flex; /* Ensure flexbox is used */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* Added transition for smooth appearance */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    flex-direction: column; /* Stack image and price vertically */
+    pointer-events: none; /* Prevent clicks when hidden */
 }
 
 /* Style to show the modal using flexbox */
 .fullscreen-modal.is-visible {
     display: flex;
+    opacity: 1;
+    pointer-events: auto; /* Allow clicks when visible */
 }
 
 
 .fullscreen-modal img {
     max-width: 90%; /* Max width of the image */
-    max-height: 90%; /* Max height of the image */
+    max-height: 80%; /* Reduced height to make space for price */
     display: block; /* Remove extra space below image */
-    margin: auto; /* Center the image */
+    margin: 0 auto 10px auto; /* Center the image horizontally, add space below */
     object-fit: contain; /* Contain the image within its bounds */
+    /* Added transition for smooth appearance */
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
 }
+
+.fullscreen-modal.is-visible img {
+    transform: scale(1);
+}
+
+/* Style for the price display element in the modal */
+.modal-price {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--modal-text-color); /* Use the new modal text color variable */
+    text-align: center;
+    margin-top: 10px; /* Space above the price */
+    text-shadow: 0 0 5px var(--modal-text-color); /* Subtle glow */
+    transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+}
+
 
 .close-button {
     position: absolute;
@@ -684,7 +890,7 @@ body.light-mode .price-item ul li {
     transition: 0.3s;
     cursor: pointer;
     text-shadow: 0 0 5px var(--close-button-color);
-    z-index: 2001; /* Ensure button is above image */
+    z-index: 2001; /* Ensure button is above image and price */
 }
 
 .close-button:hover,
@@ -693,6 +899,175 @@ body.light-mode .price-item ul li {
     text-decoration: none;
     cursor: pointer;
     text-shadow: 0 0 10px var(--close-button-hover-color);
+    /* Added subtle scale animation on hover */
+    transform: scale(1.1);
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Advanced Styling for Contact Section */
+#contact .section-body p {
+    /* Default color for paragraphs in contact section */
+    color: var(--light-text);
+    margin-bottom: 1rem; /* Slightly less space between paragraphs */
+    transition: color 0.5s ease;
+}
+
+#contact .section-body p strong {
+    /* Color for strong tags within contact paragraphs */
+    color: var(--primary-accent); /* Use primary accent for labels */
+    font-weight: bold; /* Ensure strong text is bold */
+    transition: color 0.5s ease;
+}
+
+/* Specific colors for different contact lines */
+#contact .section-body p:nth-of-type(1) { /* Name */
+    color: var(--secondary-text); /* Use secondary text color */
+}
+
+#contact .section-body p:nth-of-type(2) { /* Location */
+    color: var(--light-text); /* Use light text color */
+}
+
+#contact .section-body p:nth-of-type(3) { /* Contact */
+    color: var(--secondary-accent); /* Use secondary accent color */
+}
+
+#contact .section-body p:nth-of-type(4) { /* Email */
+    color: var(--primary-accent); /* Use primary accent color */
+}
+
+/* Styling for Customer Reviews Section */
+#reviews .section-body .reviews-list { /* Added .section-body to target the reviews list specifically */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; /* Space between review items */
+    margin-bottom: 3rem; /* Space between reviews list and form */
+}
+
+.review-item {
+    background-color: var(--item-bg); /* Use item background color */
+    border: 1px solid var(--secondary-accent); /* Secondary accent border */
+    padding: 1.5rem;
+    border-radius: 8px; /* Rounded corners */
+    text-align: left; /* Align text to the left */
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); /* Subtle glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+
+body.light-mode .review-item {
+    border-color: var(--secondary-accent); /* Light mode secondary accent border */
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.3); /* Light mode subtle glow */
+}
+
+
+.review-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 5px 15px rgba(255, 0, 255, 0.5); /* Stronger glow on hover */
+}
+
+body.light-mode .review-item:hover {
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.5); /* Light mode stronger glow on hover */
+}
+
+
+.review-item .review-text {
+    font-style: italic; /* Italicize the review text */
+    color: var(--light-text); /* Use light text color for the review */
+    margin-bottom: 1rem; /* Space between review and name */
+    transition: color 0.5s ease;
+}
+
+.review-item .customer-name {
+    font-weight: bold;
+    color: var(--primary-accent); /* Use primary accent for customer name */
+    text-align: right; /* Align customer name to the right */
+    font-size: 0.9rem;
+    transition: color 0.5s ease;
+}
+
+/* Styling for Review Submission Form */
+.review-form-container {
+    background-color: var(--item-bg); /* Use item background color */
+    border: 1px solid var(--primary-accent); /* Primary accent border */
+    padding: 2rem;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 15px var(--box-shadow-color); /* Primary subtle glow */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+body.light-mode .review-form-container {
+    border-color: var(--primary-accent); /* Light mode primary accent border */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3); /* Light mode primary subtle glow */
+}
+
+
+.review-form-container h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--secondary-accent); /* Secondary accent color for form title */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px var(--secondary-accent);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+.review-form-container .form-group {
+    margin-bottom: 1.5rem; /* Space between form groups */
+}
+
+.review-form-container label {
+    display: block; /* Label on its own line */
+    font-weight: bold;
+    color: var(--primary-accent); /* Primary accent color for labels */
+    margin-bottom: 0.5rem; /* Space below label */
+    font-size: 1rem;
+    transition: color 0.5s ease;
+}
+
+.review-form-container input[type="text"],
+.review-form-container textarea {
+    width: 100%; /* Full width inputs */
+    padding: 10px;
+    border: 1px solid var(--secondary-accent); /* Secondary accent border */
+    background-color: var(--bg-color); /* Use background color for input fields */
+    color: var(--text-color); /* Text color for input fields */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+    outline: none; /* Remove default outline */
+}
+
+body.light-mode .review-form-container input[type="text"],
+body.light-mode .review-form-container textarea {
+    border-color: var(--secondary-accent); /* Light mode secondary accent border */
+    background-color: var(--section-bg); /* Use section background color for input fields in light mode */
+    color: var(--text-color); /* Light mode text color */
+}
+
+
+.review-form-container input[type="text"]:focus,
+.review-form-container textarea:focus {
+    border-color: var(--primary-accent); /* Primary accent border on focus */
+    box-shadow: 0 0 8px var(--primary-accent); /* Primary accent glow on focus */
+}
+
+body.light-mode .review-form-container input[type="text"]:focus,
+body.light-mode .review-form-container textarea:focus {
+    border-color: var(--primary-accent); /* Light mode primary accent border on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Light mode primary glow on focus */
+}
+
+
+.review-form-container textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.review-form-container .order-button {
+    /* Inherits styles from the general .order-button */
+    display: block; /* Make the button a block element */
+    width: 100%; /* Full width button */
+    text-align: center; /* Center the button text */
+    margin-top: 2rem; /* More space above the button */
 }
 
 
@@ -807,6 +1182,30 @@ body.light-mode .price-item ul li {
       background: none; /* Remove the checkmark icon on mobile for simpler centering */
       padding-left: 0; /* Remove left padding from list items */
   }
+
+  /* Reviews list centering on mobile */
+  #reviews .section-body .reviews-list { /* Added .section-body */
+      justify-content: center; /* Center grid items horizontally */
+      align-items: center; /* Center grid items vertically */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ensure items wrap */
+  }
+
+  .review-item {
+      max-width: 320px; /* Optional: Limit max width */
+      width: 100%; /* Ensure it takes full width */
+  }
+
+    /* Review form container adjustments */
+    .review-form-container {
+        padding: 1.5rem; /* Adjust padding */
+    }
+
+    /* Adjusted styles to make price items smaller and centered within the grid on mobile */
+    .price-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced min width */
+        justify-content: center; /* Center grid items horizontally */
+        justify-items: center; /* Center content within grid items */
+    }
 }
 
 @media (max-width: 480px) {
