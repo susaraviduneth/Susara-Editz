@@ -199,24 +199,24 @@ body, .section-body[lang="si"] {
 
 .header-nav ul li {
   display: inline-block;
-  margin: 0 10px; /* Reduced margin */
+  margin: 0 10px;
 }
 
 .nav-link {
   color: var(--link-color);
   text-decoration: none;
   font-weight: 700;
-  padding: 5px 0; /* Adjusted padding */
+  padding: 5px 0;
   transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
   font-family: 'Roboto Mono', monospace;
   position: relative;
-  font-size: 0.9rem; /* Slightly smaller nav links */
+  font-size: 0.9rem;
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -3px; /* Adjusted position */
+    bottom: -3px;
     left: 0;
     width: 100%;
     height: 2px;
@@ -564,21 +564,19 @@ body.light-mode .theme-toggle-button:hover::before {
   border: 1px solid var(--primary-accent); /* Primary border */
   overflow: hidden;
   text-align: center;
-  /* Added transition for opacity and transform for hover/filter effects */
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease, opacity 0.5s ease;
+  /* Removed initial opacity and transform */
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Keep other transitions */
   position: relative;
   border-radius: 8px; /* Added rounded corners */
   cursor: pointer; /* Indicate clickable */
-  /* Initial state for fade-in animation */
-  opacity: 0;
-  transform: scale(0.95);
 }
 
 /* Animation for creation items appearing */
 .creation-item.fade-in {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 1; /* Start at full opacity */
+    transform: scale(1); /* Start at full scale */
+    /* Added initial state properties here for the transition */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease;
 }
 
 /* Style for hidden items (for filtering) */
@@ -1232,13 +1230,17 @@ body.light-mode .review-form-container textarea:focus {
     /* Adjust modal image size on very small screens */
     .fullscreen-modal img {
         max-width: 95%;
-        max-height: 95%;
+        max-height: 80%; /* Reduced height to make space for price */
     }
 
      .close-button {
         top: 10px;
         right: 10px;
         font-size: 30px;
+     }
+
+     .modal-price {
+        font-size: 1rem; /* Smaller price text on small screens */
      }
 }
 
