@@ -52,61 +52,47 @@
 }
 
 body.light-mode {
-  /* Light Mode Colors */
-  --bg-color: #f0f0f0;
-  --text-color: #333; /* Dark Grey */
-  --primary-accent: #007bff; /* Blue */
-  --secondary-accent: #dc3545; /* Red */
-  --border-color: var(--primary-accent);
-  --box-shadow-color: rgba(0, 123, 255, 0.3);
-  --link-color: var(--secondary-accent);
-  --link-hover-color: var(--primary-accent);
-  /* Updated section background to be semi-transparent */
-  --section-bg: rgba(255, 255, 255, 0.8); /* #ffffff with 80% opacity */
-  --item-bg: #eeeeee;
-  /* --grid-color: rgba(0, 0, 0, 0.05); Removed grid color */
-  --light-text: #555; /* Lighter Dark Grey */
-  --secondary-text: #a02a37; /* Darker Red */
-  --header-bg: rgba(240, 240, 240, 0.9);
-  --nav-bg: rgba(240, 240, 240, 0.9); /* This variable is now less relevant */
-  --mid-dark-bg: #dcdcdc; /* Added for footer/other mid-dark elements */
-  --dark-bg: #cccccc; /* Added for placeholder background */
-
-  /* Icon Colors */
-  /* These are defined in :root but overridden here for light mode */
-
-  /* Modal Colors */
-  --modal-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-  --close-button-color: var(--text-color);
-  --close-button-hover-color: var(--primary-accent);
-  --modal-text-color: var(--primary-accent); /* Color for modal text like price */
-
-  /* Gradient Colors for Text/Elements */
-  --gradient-start: var(--primary-accent); /* Blue */
-  --gradient-end: var(--secondary-accent); /* Red */
-
-   /* WhatsApp Icon Color */
-  --whatsapp-color: #25D366; /* WhatsApp Green */
-  --whatsapp-hover-color: #128C7E; /* Darker WhatsApp Green */
+  --bg-color: #fffbe7;
+  --text-color: #1a1a1a;
+  --primary-accent: #ff9800; /* Vibrant orange */
+  --secondary-accent: #00bcd4; /* Bright cyan */
+  --border-color: #ff9800;
+  --box-shadow-color: rgba(255, 152, 0, 0.25);
+  --link-color: #00bcd4;
+  --link-hover-color: #ff9800;
+  --section-bg: rgba(255, 255, 255, 0.95);
+  --item-bg: #fff3e0;
+  --light-text: #ff9800;
+  --secondary-text: #00bcd4;
+  --header-bg: rgba(255, 248, 225, 0.95);
+  --nav-bg: rgba(255, 248, 225, 0.95);
+  --mid-dark-bg: #ffe0b2;
+  --dark-bg: #ffd180;
+  --modal-bg: rgba(255, 255, 255, 0.98);
+  --close-button-color: #ff9800;
+  --close-button-hover-color: #00bcd4;
+  --modal-text-color: #ff9800;
+  --gradient-start: #ff9800;
+  --gradient-end: #00bcd4;
+  --whatsapp-color: #25D366;
+  --whatsapp-hover-color: #128C7E;
 }
 
 
+body, .section-body[lang="si"] {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, 'Roboto Mono', monospace, 'Noto Sans Sinhala', sans-serif;
+}
+
 body {
-  font-family: 'Roboto Mono', monospace; /* Main content font */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, 'Roboto Mono', monospace;
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.7;
-  padding-top: 160px; /* Adjusted padding for the new fixed header height */
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  position: relative; /* Needed for button positioning */
-  transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+    padding-top: 160px;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
-
-/* Add Sinhala font to body or specific elements if needed */
-body, .section-body[lang="si"] {
-    font-family: 'Roboto Mono', monospace, 'Noto Sans Sinhala', sans-serif;
-}
-
 
 /* Background Grid Effect (now background image) */
 .background-grid {
@@ -123,6 +109,7 @@ body, .section-body[lang="si"] {
     z-index: -1; /* Send to back */
     opacity: 0.4; /* Set opacity to 40% */
     transition: opacity 0.5s ease; /* Smooth transition for opacity */
+    animation: fadeInUp 1s ease-out;
 }
 
 
@@ -178,7 +165,7 @@ body, .section-body[lang="si"] {
 }
 
 .site-subtitle {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
   font-size: 0.8rem; /* Smaller subtitle */
   color: var(--light-text);
   letter-spacing: 1px;
@@ -207,8 +194,8 @@ body, .section-body[lang="si"] {
   text-decoration: none;
   font-weight: 700;
   padding: 5px 0;
-  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
-  font-family: 'Roboto Mono', monospace;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
   position: relative;
   font-size: 0.9rem;
 }
@@ -229,7 +216,7 @@ body, .section-body[lang="si"] {
 .nav-link:hover {
   color: var(--link-hover-color);
   text-shadow: 0 0 5px var(--link-hover-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .nav-link:hover::after {
@@ -254,7 +241,7 @@ body, .section-body[lang="si"] {
     background-color: transparent;
     border: 1px solid var(--secondary-accent);
     color: var(--secondary-accent);
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
     font-size: 0.9rem;
     padding: 8px 15px;
     cursor: pointer;
@@ -303,7 +290,7 @@ body.light-mode .filter-button.active {
 
 /* Animated Text within Header */
 .animated-top-text {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif; /* Keep this font or update based on user preference */
     font-size: 1.5rem; /* Adjust size as needed */
     color: var(--primary-accent); /* Use primary color */
     text-align: center;
@@ -347,6 +334,41 @@ body.light-mode .filter-button.active {
   }
 }
 
+/* Animation Keyframes for Order Button */
+@keyframes pulse-glow {
+  0% {
+    /* Starting state: original box shadow */
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+  }
+  50% {
+    /* Mid-animation state: stronger glow using primary accent */
+    box-shadow: 0 0 15px var(--primary-accent), 0 0 20px var(--primary-accent);
+  }
+  100% {
+    /* Ending state: return to original box shadow */
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+  }
+}
+
+/* Light mode specific keyframes if the accent colors change the glow effect significantly */
+@keyframes pulse-glow-light-mode {
+    0% {
+        box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+    }
+    50% {
+        /* Mid-animation state: stronger glow using light mode primary accent */
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6), 0 0 20px rgba(0, 123, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+    }
+}
+
+body.light-mode .order-button {
+    animation: pulse-glow-light-mode 2s ease-in-out infinite alternate;
+}
+
+
 /* Theme Toggle Button - Fixed Position */
 .theme-toggle-button {
     position: fixed; /* Fixed position */
@@ -355,11 +377,13 @@ body.light-mode .filter-button.active {
     background-color: transparent;
     border: 1px solid var(--secondary-accent);
     color: transparent; /* Hide the text */
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
     font-size: 0; /* Hide text visually */
     padding: 10px; /* Adjust padding for icon size */
     cursor: pointer;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                box-shadow 0.3s ease;
     box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
     border-radius: 5px;
     z-index: 1001; /* Ensure it's above other content */
@@ -391,8 +415,8 @@ body.light-mode .theme-toggle-button::before {
 
 
 .theme-toggle-button:hover {
-    border-color: var(--primary-accent); /* Change border color to primary accent */
-    box-shadow: 0 0 8px var(--primary-accent); /* Stronger glow based on primary color */
+    transform: rotate(180deg);
+    animation: pulseBorder 1.5s infinite;
 }
 
 /* Hover effect for the icon */
@@ -455,38 +479,34 @@ body.light-mode .theme-toggle-button:hover::before {
 }
 
 .section {
-  background-color: var(--section-bg); /* Dark grey */
-  margin-bottom: 3rem;
-  padding: 2.5rem;
-  border: 1px solid var(--primary-accent); /* Primary neon border */
-  box-shadow: 0 0 15px var(--box-shadow-color); /* Primary subtle glow */
+  background-color: var(--section-bg);
+  margin-bottom: 2rem; /* Reduced from 3rem */
+  padding: 1.5rem; /* Reduced from 2.5rem */
+  border: 1px solid var(--primary-accent);
+  box-shadow: 0 0 15px var(--box-shadow-color);
   position: relative;
-  overflow: hidden; /* For pseudo-elements */
-  border-radius: 10px; /* Added rounded corners */
-  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
-  /* Initial state for fade-in animation */
+  overflow: hidden;
+  border-radius: 8px; /* Reduced from 10px */
   opacity: 0;
   transform: translateY(20px);
-  /* Animation applied when the 'fade-in' class is added by JavaScript */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, padding 0.3s ease;
 }
 
-/* Class to trigger the fade-in animation */
 .section.fade-in {
     opacity: 1;
     transform: translateY(0);
 }
 
 
-/* Section corner effects */
+/* Section corner effects - reduced size */
 .section::before,
 .section::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--secondary-accent); /* Secondary color corners */
-    transition: border-color 0.5s ease; /* Smooth transition */
+    width: 15px; /* Reduced from 20px */
+    height: 15px; /* Reduced from 20px */
+    border: 1px solid var(--secondary-accent); /* Reduced from 2px */
+    transition: border-color 0.5s ease;
 }
 
 .section::before {
@@ -503,41 +523,117 @@ body.light-mode .theme-toggle-button:hover::before {
     border-top: none;
 }
 
-
+/* Section Title Styles */
 .section-title {
-  font-family: 'Orbitron', sans-serif;
-  /* Removed color property for gradient text */
-  margin-bottom: 2rem;
-  text-align: center;
-  position: relative;
-  padding-bottom: 15px;
-  /* Removed text-shadow for gradient text */
-  font-size: 2rem;
-  transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
-
-  /* Added Gradient Text */
-  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  /* Ensure text-shadow is off for gradient */
-  text-shadow: none;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    text-align: center;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+    background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 174, 255, 0.3);
+    position: relative;
 }
 
 .section-title::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 3px;
-  background-color: var(--primary-accent); /* Primary color underline */
-  margin: 15px auto 0;
-  box-shadow: 0 0 8px var(--primary-accent);
-  transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+    border-radius: 2px;
+}
+
+/* Light mode adjustments for section titles */
+body.light-mode .section-title {
+    background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+body.light-mode .section-title::after {
+    background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+}
+
+/* Responsive adjustments for sections */
+@media (max-width: 768px) {
+    .section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+}
+
+.section-title {
+        font-size: 1.8rem;
+        padding-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .section::before,
+    .section::after {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        padding-top: 0.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .section::before,
+    .section::after {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Auto-adjustment for content spacing */
+.section-body {
+    padding: 0.5rem;
+    transition: padding 0.3s ease;
+}
+
+.section-body p {
+    margin-bottom: 0.8rem; /* Reduced from 1.2rem */
+}
+
+/* Grid spacing adjustments */
+.grid-gallery {
+    gap: 20px; /* Reduced from 30px */
+    padding: 0.5rem;
+}
+
+/* Price list spacing adjustments */
+.price-list {
+    gap: 20px; /* Reduced from 30px */
+    padding: 0.5rem;
+}
+
+.price-item {
+    padding: 1.5rem; /* Reduced from 2rem */
 }
 
 .section-body {
   color: var(--light-text); /* Slightly darker primary text */
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
   font-size: 1rem;
   transition: color 0.5s ease; /* Smooth transition */
 }
@@ -556,33 +652,58 @@ body.light-mode .theme-toggle-button:hover::before {
 .grid-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  gap: 20px;
+  justify-items: center;
+  padding: 0.5rem;
+  opacity: 1; /* Ensure grid is visible */
+  transform: none; /* Remove any transform from grid */
+}
+
+/* Ensure ETS2 bus sticker appears last with proper animation */
+.creation-item[data-category="Ets2 bus stickers"] {
+    order: 999;
+    grid-column: auto;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.creation-item[data-category="Ets2 bus stickers"].fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .creation-item {
-  background-color: var(--item-bg); /* Very dark */
-  border: 1px solid var(--primary-accent); /* Primary border */
+    background-color: var(--item-bg);
+    border: 1px solid var(--primary-accent);
   overflow: hidden;
   text-align: center;
-  /* Removed initial opacity and transform */
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Keep other transitions */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  border-radius: 8px; /* Added rounded corners */
-  cursor: pointer; /* Indicate clickable */
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    will-change: transform, opacity; /* Optimize animation performance */
 }
 
-/* Animation for creation items appearing */
 .creation-item.fade-in {
-    opacity: 1; /* Start at full opacity */
-    transform: scale(1); /* Start at full scale */
-    /* Added initial state properties here for the transition */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Style for hidden items (for filtering) */
-.creation-item.hidden {
-  display: none; /* Use display: none for filtering */
-  /* Removed opacity and transition here as display: none handles hiding */
+.creation-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 174, 255, 0.2);
+}
+
+/* Hide all images within creation items EXCEPT the first one (the thumbnail) */
+.creation-item img:not(:first-child) {
+    display: none;
 }
 
 
@@ -605,50 +726,50 @@ body.light-mode .creation-item::before {
 
 .creation-item:hover::before {
     opacity: 1;
-}
-
-
-.creation-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.8), 0 10px 25px rgba(255, 0, 255, 0.8); /* Dual color glow */
-}
-
-  body.light-mode .creation-item:hover {
-    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.8), 0 10px 25px rgba(220, 53, 69, 0.8); /* Light mode dual color glow */
    }
 
 
-.creation-item img {
+.creation-item img:first-child { /* Target the first image specifically as the thumbnail */
   display: block;
   width: 100%;
   height: 220px; /* Fixed height for consistency */
-  object-fit: cover; /* Cover the area without distortion */
-  border-bottom: 1px solid var(--secondary-accent); /* Secondary border */
-  transition: transform 0.4s ease, border-color 0.5s ease; /* Smooth transition */
+  object-fit: cover;
+  border-bottom: 1px solid var(--secondary-accent);
+  transition: transform 0.4s ease, border-color 0.5s ease;
 }
 
-.creation-item:hover img {
+.creation-item:hover img:first-child {
     transform: scale(1.05);
 }
 
 .creation-info {
   padding: 1.2rem;
   text-align: center;
+  min-height: 120px; /* Add minimum height for consistency */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Changed from space-between to center */
+  align-items: center; /* Added to center horizontally */
 }
 
 .creation-info h3 {
   font-family: 'Orbitron', sans-serif;
-  color: var(--primary-accent); /* Primary color for item titles */
+  color: var(--primary-accent);
   margin-bottom: 0.5rem;
   text-shadow: 0 0 3px var(--primary-accent);
   font-size: 1.2rem;
-  transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
+  transition: color 0.5s ease, text-shadow 0.5s ease;
+  /* Add line height and max height for consistency */
+  line-height: 1.4;
+  max-height: 2.8em;
+  overflow: hidden;
 }
 
 .creation-info p {
   font-size: 0.9rem;
   color: var(--light-text);
-  transition: color 0.5s ease; /* Smooth transition */
+  transition: color 0.5s ease;
+  margin-bottom: 1rem;
 }
 
 /* Order Button Style */
@@ -658,20 +779,24 @@ body.light-mode .creation-item::before {
     background-color: var(--button-green);
     /* Set text color to black for dark mode */
     color: var(--bg-color);
-    padding: 10px 20px;
+    padding: 5px 10px;
     margin-top: 15px; /* Space above the button */
     text-decoration: none; /* Remove underline */
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
+    font-size: 1.11rem;
     font-weight: bold;
+     width: fit-content; /* Button fits its content */
     /* Set border color to green for dark mode */
     border: 1px solid var(--button-green);
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; /* Added transform transition */
+    border-radius: 10px; /* Rounded corners */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     /* Set box shadow to green for dark mode */
     box-shadow: 0 0 8px rgba(57, 255, 20, 0.5); /* Subtle glow based on neon green */
     position: relative; /* Needed for z-index */
     z-index: 1; /* Ensure it's above other content in the item */
+
+    /* Apply the animation */
+    animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
 body.light-mode .order-button {
@@ -687,12 +812,8 @@ body.light-mode .order-button {
 
 
 .order-button:hover {
-    background-color: transparent; /* Transparent background on hover */
-    color: var(--primary-accent); /* Change text color to primary accent */
-    border-color: var(--primary-accent); /* Change border color to primary accent */
-    box-shadow: 0 0 12px var(--primary-accent); /* Stronger glow based on primary color */
-    transform: scale(1.05); /* Slightly scale up on hover */
-    z-index: 2; /* Bring forward on hover if needed */
+    transform: translateY(-2px) scale(1.05);
+    animation: pulseBorder 1.5s infinite;
 }
 
 
@@ -704,26 +825,29 @@ body.light-mode .order-button {
 }
 
 .price-item {
-  background-color: var(--item-bg); /* Very dark */
-  border: 1px solid var(--secondary-accent); /* Secondary border */
+    background-color: var(--item-bg);
+    border: 1px solid var(--secondary-accent);
   padding: 2rem;
-  text-align: center; /* Kept text-align: center for price item */
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden; /* For pseudo-elements */
-  border-radius: 8px; /* Added rounded corners */
-  /* Initial state for fade-in animation */
-  opacity: 0;
-  transform: translateY(20px);
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-/* Animation for price items appearing */
 .price-item.fade-in {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+.price-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 174, 255, 0.15);
+}
 
 .price-item::before {
     content: '';
@@ -757,7 +881,7 @@ body.light-mode .price-item:hover {
 
 
 .price-item h3 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Orbitron', sans-serif; /* Keep this font or update based on user preference */
   color: var(--secondary-accent); /* Secondary color for price titles */
   margin-bottom: 1.5rem;
   text-align: center;
@@ -791,6 +915,7 @@ body.light-mode .price-item:hover {
   font-size: 1rem;
   transition: color 0.5s ease; /* Smooth transition */
   text-align: center; /* Center the list item text */
+  font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
 }
 
 body.light-mode .price-item ul li {
@@ -817,78 +942,136 @@ body.light-mode .price-item ul li {
 
 .footer p {
   font-size: 0.9rem;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace; /* Update this for Nunito */
 }
+
+/* Class to hide elements (used by filtering) */
+.hidden {
+    display: none !important; /* Ensure elements are completely hidden */
+}
+
 
 /* Fullscreen Modal Styles */
 .fullscreen-modal {
-    /* Initially hidden */
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 2000; /* Sit on top */
+    position: fixed;
+    z-index: 2000;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: var(--modal-bg); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    display: flex; /* Ensure flexbox is used */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    /* Added transition for smooth appearance */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--modal-bg);
+    backdrop-filter: blur(10px);
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    flex-direction: column; /* Stack image and price vertically */
-    pointer-events: none; /* Prevent clicks when hidden */
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Style to show the modal using flexbox */
 .fullscreen-modal.is-visible {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     opacity: 1;
-    pointer-events: auto; /* Allow clicks when visible */
+    visibility: visible;
+    pointer-events: auto;
 }
 
-
+/* Position and size for the main image in the modal */
 .fullscreen-modal img {
-    max-width: 90%; /* Max width of the image */
-    max-height: 80%; /* Reduced height to make space for price */
-    display: block; /* Remove extra space below image */
-    margin: 0 auto 10px auto; /* Center the image horizontally, add space below */
-    object-fit: contain; /* Contain the image within its bounds */
-    /* Added transition for smooth appearance */
-    transform: scale(0.9);
-    transition: transform 0.3s ease-in-out;
-}
-
-.fullscreen-modal.is-visible img {
-    transform: scale(1);
+  max-width: 90%;
+  max-height: calc(100vh - 180px);
+  object-fit: contain;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2001;
 }
 
 /* Style for the price display element in the modal */
 .modal-price {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.2rem;
-    color: var(--modal-text-color); /* Use the new modal text color variable */
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2003;
+    width: 100%;
+    max-width: 90%;
     text-align: center;
-    margin-top: 10px; /* Space above the price */
-    text-shadow: 0 0 5px var(--modal-text-color); /* Subtle glow */
-    transition: color 0.5s ease, text-shadow 0.5s ease; /* Smooth transition */
 }
 
+/* Style for the span wrapping the price text */
+.price-highlight {
+  display: inline-block; /* Make it behave like an inline-block to wrap content and accept padding/border */
+  /* Apply the border, padding, etc. here */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Black border with 20% opacity */
+  padding: 5px; /* Add padding inside the border */
+  background-color: rgba(0, 0, 0, 0.3); /* Optional: Add a slight background for contrast */
+  border-radius: 5px; /* Optional: Rounded corners */
+  /* Font styles, color, text-shadow are inherited from .modal-price */
+}
 
+/* Ensure modal-previews bottom positioning is also considered */
+/* Keep previews at a lower bottom value so they are below the price */
+.modal-previews {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2006; /* Ensure above navigation bar */
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  max-width: 90%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.modal-previews::-webkit-scrollbar {
+    display: none;
+}
+.preview-dot {
+    width: 20px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+.preview-dot.active {
+    background-color: var(--primary-accent);
+    transform: scaleY(1.5);
+}
+.preview-dot:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scaleY(1.2);
+}
+body.light-mode .preview-dot {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+body.light-mode .preview-dot:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+body.light-mode .preview-dot.active {
+    background-color: var(--primary-accent);
+}
+
+/* Close button style */
 .close-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
-    right: 30px;
+    right: 20px;
+    z-index: 2005;
     color: var(--close-button-color);
     font-size: 40px;
     font-weight: bold;
-    transition: 0.3s;
     cursor: pointer;
-    text-shadow: 0 0 5px var(--close-button-color);
-    z-index: 2001; /* Ensure button is above image and price */
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .close-button:hover,
@@ -897,192 +1080,154 @@ body.light-mode .price-item ul li {
     text-decoration: none;
     cursor: pointer;
     text-shadow: 0 0 10px var(--close-button-hover-color);
-    /* Added subtle scale animation on hover */
     transform: scale(1.1);
     transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
 }
 
-/* Advanced Styling for Contact Section */
-#contact .section-body p {
-    /* Default color for paragraphs in contact section */
-    color: var(--light-text);
-    margin-bottom: 1rem; /* Slightly less space between paragraphs */
-    transition: color 0.5s ease;
+/* Styles for Modal Navigation Buttons Container */
+.modal-navigation {
+    position: fixed;
+    z-index: 2004;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(-50%);
+    pointer-events: none;
+    padding: 0 40px;
+}
+.modal-nav-button {
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: var(--text-color);
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+@media (max-width: 768px) {
+    .modal-navigation {
+        padding: 0 24px;
+    }
+    .modal-nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        padding: 8px;
+    }
+}
+@media (max-width: 480px) {
+    .modal-navigation {
+        padding: 0 10px;
+    }
+    .modal-nav-button {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        padding: 6px;
+    }
 }
 
-#contact .section-body p strong {
-    /* Color for strong tags within contact paragraphs */
-    color: var(--primary-accent); /* Use primary accent for labels */
-    font-weight: bold; /* Ensure strong text is bold */
-    transition: color 0.5s ease;
-}
-
-/* Specific colors for different contact lines */
-#contact .section-body p:nth-of-type(1) { /* Name */
-    color: var(--secondary-text); /* Use secondary text color */
-}
-
-#contact .section-body p:nth-of-type(2) { /* Location */
-    color: var(--light-text); /* Use light text color */
-}
-
-#contact .section-body p:nth-of-type(3) { /* Contact */
-    color: var(--secondary-accent); /* Use secondary accent color */
-}
-
-#contact .section-body p:nth-of-type(4) { /* Email */
-    color: var(--primary-accent); /* Use primary accent color */
-}
-
-/* Styling for Customer Reviews Section */
-#reviews .section-body .reviews-list { /* Added .section-body to target the reviews list specifically */
+/* Styling for Customer Reviews Section (now Feedback) */
+#reviews .section-body .reviews-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px; /* Space between review items */
-    margin-bottom: 3rem; /* Space between reviews list and form */
+    gap: 20px;
+    margin-bottom: 3rem;
 }
 
 .review-item {
-    background-color: var(--item-bg); /* Use item background color */
-    border: 1px solid var(--secondary-accent); /* Secondary accent border */
+    background-color: var(--item-bg);
+    border: 1px solid var(--secondary-accent);
     padding: 1.5rem;
-    border-radius: 8px; /* Rounded corners */
-    text-align: left; /* Align text to the left */
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); /* Subtle glow */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease;
 }
 
 body.light-mode .review-item {
-    border-color: var(--secondary-accent); /* Light mode secondary accent border */
-    box-shadow: 0 0 10px rgba(220, 53, 69, 0.3); /* Light mode subtle glow */
+    border-color: var(--secondary-accent);
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
 }
 
 
 .review-item:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 5px 15px rgba(255, 0, 255, 0.5); /* Stronger glow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 0, 255, 0.5);
 }
 
 body.light-mode .review-item:hover {
-    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.5); /* Light mode stronger glow on hover */
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.5);
+}
+
+/* Center the image within the review item */
+.review-item img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border: none;
 }
 
 
-.review-item .review-text {
-    font-style: italic; /* Italicize the review text */
-    color: var(--light-text); /* Use light text color for the review */
-    margin-bottom: 1rem; /* Space between review and name */
+/* Styling for Contact Section */
+#contact .section-body p {
+    color: var(--light-text);
+    margin-bottom: 1rem;
     transition: color 0.5s ease;
-}
-
-.review-item .customer-name {
-    font-weight: bold;
-    color: var(--primary-accent); /* Use primary accent for customer name */
-    text-align: right; /* Align customer name to the right */
-    font-size: 0.9rem;
-    transition: color 0.5s ease;
-}
-
-/* Styling for Review Submission Form */
-.review-form-container {
-    background-color: var(--item-bg); /* Use item background color */
-    border: 1px solid var(--primary-accent); /* Primary accent border */
-    padding: 2rem;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 15px var(--box-shadow-color); /* Primary subtle glow */
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-body.light-mode .review-form-container {
-    border-color: var(--primary-accent); /* Light mode primary accent border */
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3); /* Light mode primary subtle glow */
-}
-
-
-.review-form-container h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--secondary-accent); /* Secondary accent color for form title */
-    text-align: center;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 5px var(--secondary-accent);
-    transition: color 0.5s ease, text-shadow 0.5s ease;
-}
-
-.review-form-container .form-group {
-    margin-bottom: 1.5rem; /* Space between form groups */
-}
-
-.review-form-container label {
-    display: block; /* Label on its own line */
-    font-weight: bold;
-    color: var(--primary-accent); /* Primary accent color for labels */
-    margin-bottom: 0.5rem; /* Space below label */
-    font-size: 1rem;
-    transition: color 0.5s ease;
-}
-
-.review-form-container input[type="text"],
-.review-form-container textarea {
-    width: 100%; /* Full width inputs */
-    padding: 10px;
-    border: 1px solid var(--secondary-accent); /* Secondary accent border */
-    background-color: var(--bg-color); /* Use background color for input fields */
-    color: var(--text-color); /* Text color for input fields */
     font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;
-    outline: none; /* Remove default outline */
 }
 
-body.light-mode .review-form-container input[type="text"],
-body.light-mode .review-form-container textarea {
-    border-color: var(--secondary-accent); /* Light mode secondary accent border */
-    background-color: var(--section-bg); /* Use section background color for input fields in light mode */
-    color: var(--text-color); /* Light mode text color */
+#contact .section-body p strong {
+    color: var(--primary-accent);
+    font-weight: bold;
+    transition: color 0.5s ease;
 }
 
-
-.review-form-container input[type="text"]:focus,
-.review-form-container textarea:focus {
-    border-color: var(--primary-accent); /* Primary accent border on focus */
-    box-shadow: 0 0 8px var(--primary-accent); /* Primary accent glow on focus */
+/* Specific colors for different contact lines */
+#contact .section-body p:nth-of-type(1) {
+    color: var(--secondary-text);
 }
 
-body.light-mode .review-form-container input[type="text"]:focus,
-body.light-mode .review-form-container textarea:focus {
-    border-color: var(--primary-accent); /* Light mode primary accent border on focus */
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Light mode primary glow on focus */
+#contact .section-body p:nth-of-type(2) {
+    color: var(--light-text);
 }
 
-
-.review-form-container textarea {
-    resize: vertical; /* Allow vertical resizing */
+#contact .section-body p:nth-of-type(3) {
+    color: var(--secondary-accent);
 }
 
-.review-form-container .order-button {
-    /* Inherits styles from the general .order-button */
-    display: block; /* Make the button a block element */
-    width: 100%; /* Full width button */
-    text-align: center; /* Center the button text */
-    margin-top: 2rem; /* More space above the button */
+#contact .section-body p:nth-of-type(4) {
+    color: var(--primary-accent);
 }
 
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   body {
-    padding-top: 180px; /* Adjust for stacked header/nav */
+    padding-top: 180px;
   }
 
   .header.fixed-top-bar {
-    position: static; /* Make header static on small screens */
+    position: static;
     padding-bottom: 0;
     border-bottom: none;
   }
 
   .header-content {
-      flex-direction: column; /* Stack items vertically */
+      flex-direction: column;
       align-items: center;
   }
 
@@ -1099,27 +1244,36 @@ body.light-mode .review-form-container textarea:focus {
   }
 
   .site-logo {
-      margin: 0 auto; /* Center logo when stacked */
+      margin: 0 auto;
   }
 
   .site-subtitle {
       font-size: 0.7rem;
+      font-family: 'Roboto Mono', monospace;
   }
 
   .header-nav {
-      width: 100%; /* Nav takes full width */
-      border-top: 1px solid var(--secondary-accent); /* Separator */
+      width: 100%;
+      border-top: 1px solid var(--secondary-accent);
       padding-top: 10px;
       margin-bottom: 10px;
   }
 
+  .header-nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
   .header-nav ul li {
-    display: block; /* Stack nav links */
+    display: block;
     margin: 5px 0;
   }
 
   .nav-link {
-    font-size: 1rem; /* Slightly larger stacked links */
+    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
   }
 
   .section {
@@ -1127,96 +1281,140 @@ body.light-mode .review-form-container textarea:focus {
   }
 
   .site-title {
-    font-size: 2.2rem; /* Keep font size for subtitle */
+    font-size: 2.2rem;
   }
 
   .section-title {
     font-size: 1.8rem;
   }
 
-  /* Theme toggle button remains fixed */
   .theme-toggle-button {
       position: fixed;
-      bottom: 10px; /* Adjust position for smaller screens */
+      bottom: 10px;
       right: 10px;
-      font-size: 0; /* Hide text */
-      padding: 8px; /* Adjust padding for icon size */
-      width: 36px; /* Adjust size */
-      height: 36px; /* Adjust size */
+      font-size: 0;
+      padding: 8px;
+      width: 36px;
+      height: 36px;
+      z-index: 1001;
   }
 
     .theme-toggle-button::before {
-        width: 20px; /* Adjust icon size */
-        height: 20px; /* Adjust icon size */
+        width: 20px;
+        height: 20px;
+    }
+
+    .whatsapp-button {
+        bottom: 60px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        z-index: 1001;
     }
 
 
   .animated-top-text {
-      font-size: 1.2rem; /* Smaller text on small screens */
-      margin-top: 5px; /* Adjust margin */
+      font-size: 1.2rem;
+      margin-top: 5px;
+      font-family: 'Orbitron', sans-serif;
   }
 
   .animated-top-text .youtube-icon {
-      height: 16px; /* Smaller icon on small screens */
+      height: 16px;
   }
 
-  /* Mobile Price Tab Centering Fix */
   .price-item {
-    text-align: center; /* Center text content within the price item */
+    text-align: center;
   }
 
   .price-item ul {
-    padding-left: 0; /* Ensure no left padding on the list */
+    padding-left: 0;
   }
 
   .price-item ul li {
-    text-align: center; /* Center the list item text */
-    /* Adjust background position if needed, or remove the background icon on mobile */
-    background: none; /* Remove the checkmark icon on mobile for simpler centering */
-    padding-left: 0; /* Remove left padding from list items */
+    text-align: center;
+    background: none;
+    padding-left: 0;
+    font-family: 'Roboto Mono', monospace;
   }
 
   body.light-mode .price-item ul li {
-      background: none; /* Remove the checkmark icon on mobile for simpler centering */
-      padding-left: 0; /* Remove left padding from list items */
+      background: none;
+      padding-left: 0;
   }
 
-  /* Reviews list centering on mobile */
-  #reviews .section-body .reviews-list { /* Added .section-body */
-      justify-content: center; /* Center grid items horizontally */
-      align-items: center; /* Center grid items vertically */
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ensure items wrap */
+  #reviews .section-body .reviews-list {
+      justify-content: center;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 
   .review-item {
-      max-width: 320px; /* Optional: Limit max width */
-      width: 100%; /* Ensure it takes full width */
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
   }
 
-    /* Review form container adjustments */
-    .review-form-container {
-        padding: 1.5rem; /* Adjust padding */
+
+    .price-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        justify-content: center;
+        justify-items: center;
     }
 
-    /* Adjusted styles to make price items smaller and centered within the grid on mobile */
-    .price-list {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced min width */
-        justify-content: center; /* Center grid items horizontally */
-        justify-items: center; /* Center content within grid items */
+    .fullscreen-modal img {
+        max-width: 95%;
+        max-height: calc(100vh - 100px);
     }
+
+     .close-button {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        z-index: 2005;
+     }
+
+     .modal-price {
+        bottom: 40px;
+        font-size: 1rem;
+         font-family: 'Roboto Mono', monospace;
+         z-index: 2003;
+     }
+
+     .modal-navigation {
+        padding: 0 10px;
+        z-index: 2004;
+    }
+
+    .modal-nav-button {
+        font-size: 24px;
+        padding: 8px;
+    }
+
+    .modal-previews {
+        bottom: 15px;
+        padding: 8px;
+        gap: 8px;
+     }
+      .modal-previews img {
+        width: 40px;
+        height: 40px;
+      }
 }
 
 @media (max-width: 480px) {
   .site-title {
-    font-size: 1.8rem; /* Keep font size for subtitle */
+    font-size: 1.8rem;
   }
 
   .site-subtitle {
     font-size: 0.8rem;
+    font-family: 'Roboto Mono', monospace;
   }
 
   .nav-link {
     font-size: 0.9rem;
+    font-family: 'Roboto Mono', monospace;
   }
 
   .section-title {
@@ -1227,31 +1425,263 @@ body.light-mode .review-form-container textarea:focus {
     padding: 1.5rem;
   }
 
-    /* Adjust modal image size on very small screens */
-    .fullscreen-modal img {
-        max-width: 95%;
-        max-height: 80%; /* Reduced height to make space for price */
+
+    .price-list {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
-     .close-button {
-        top: 10px;
-        right: 10px;
-        font-size: 30px;
-     }
-
+    .fullscreen-modal img {
+        max-width: 98%;
+        max-height: calc(100vh - 80px);
+    }
      .modal-price {
-        font-size: 1rem; /* Smaller price text on small screens */
+        bottom: 30px;
+        font-size: 0.9rem;
+         font-family: 'Roboto Mono', monospace;
+         z-index: 2003;
      }
+      .modal-previews {
+         bottom: 10px;
+         padding: 6px;
+         gap: 6px;
+         max-width: 98%;
+         z-index: 2002;
+      }
+       .modal-previews img {
+        width: 35px;
+        height: 35px;
+      }
 }
+
+/* Adjustments for PC View (larger screens) */
+@media (min-width: 769px) {
+    .header-nav ul {
+        text-align: right;
+        padding-right: 20px;
+    }
+}
+
 
 /* Placeholder image style */
 img[alt^="Creation"] {
-    background-color: var(--dark-bg); /* Dark background for placeholders */
-    border: 1px dashed var(--secondary-accent); /* Dashed secondary border */
+    background-color: var(--dark-bg);
+    border: 1px dashed var(--secondary-accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--secondary-text); /* Darker secondary text */
+    color: var(--secondary-text);
     font-size: 0.9rem;
     text-align: center;
+    height: 220px;
+    object-fit: cover;
+}
+/* --- Responsive Adjustments for Fullscreen Modal (Mobile View) --- */
+@media (max-width: 768px) {
+
+    .fullscreen-modal img {
+        max-height: calc(100vh - 180px);
+    }
+
+    #modal-price {
+        bottom: 150px;
+        font-size: 1rem;
+        padding: 3px 5px;
+    }
+
+    #modal-previews {
+        bottom: 110px;
+    }
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseBorder {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 174, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 174, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 174, 255, 0);
+  }
+}
+
+/* Update section animations */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, padding 0.3s ease;
+}
+
+.section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced creation item animations */
+.creation-item {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: scaleIn 0.6s ease-out;
+}
+
+.creation-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 174, 255, 0.2);
+}
+
+/* Enhanced modal animations */
+.fullscreen-modal {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fullscreen-modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fullscreen-modal img {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced theme toggle animation */
+.theme-toggle-button {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+  transform: rotate(180deg);
+  animation: pulseBorder 1.5s infinite;
+}
+
+/* Enhanced navigation link animations */
+.nav-link {
+  transition: color 0.3s ease,
+              text-shadow 0.3s ease,
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  transform: translateY(-3px);
+}
+
+/* Enhanced order button animation */
+.order-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.order-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  animation: pulseBorder 1.5s infinite;
+}
+
+/* Enhanced background grid animation */
+.background-grid {
+  animation: fadeInUp 1s ease-out;
+  transition: opacity 0.5s ease;
+}
+
+/* Enhanced price item animations */
+.price-item {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.price-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 174, 255, 0.15);
+}
+
+/* Grid layout adjustments */
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    padding: 0.5rem;
+    opacity: 1;
+    transform: none;
+}
+
+/* Ensure ETS2 bus sticker appears last with proper animation */
+.creation-item[data-category="Ets2 bus stickers"] {
+    order: 999;
+    grid-column: auto;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.creation-item[data-category="Ets2 bus stickers"].fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.light-mode .modal-price {
+    color: var(--primary-accent);
+    text-shadow: 0 0 8px #fff, 0 0 2px var(--primary-accent);
+}
+body.light-mode .price-highlight {
+    background-color: #fff;
+    color: var(--primary-accent);
+    border: 1px solid var(--primary-accent);
+    text-shadow: 0 1px 6px #fff, 0 0 2px var(--primary-accent);
+}
+
+.modal-play-pause {
+    display: none !important;
+}
+
+/* Rainbow text animation */
+.rainbow-text {
+  background-image: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  background-size: 400%;
+  -webkit-backgroundclip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
 }
