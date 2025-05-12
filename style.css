@@ -78,9 +78,16 @@ body.light-mode {
   --whatsapp-hover-color: #128C7E;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 body, .section-body[lang="si"] {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, 'Roboto Mono', monospace, 'Noto Sans Sinhala', sans-serif;
+}
+
+body, button, input, select, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 body {
@@ -122,18 +129,18 @@ body {
 
 /* Header - Now the fixed top bar */
 .header.fixed-top-bar {
-  background-color: var(--header-bg); /* Semi-transparent dark/light */
-  backdrop-filter: blur(5px); /* Frosted glass effect */
-  padding: 0.5rem 0 1.5rem 0; /* Increased bottom padding for animated text */
-  text-align: center; /* Center content by default */
+  background-color: var(--header-bg);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem 0 1.5rem 0;
+  text-align: center;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
-  border-bottom: 2px solid var(--primary-accent); /* Primary neon border */
-  box-shadow: 0 2px 15px var(--box-shadow-color); /* Primary neon glow */
-  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, padding 0.5s ease; /* Smooth transition */
+  border-bottom: 2px solid var(--primary-accent);
+  box-shadow: 0 2px 15px var(--box-shadow-color);
+  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, padding 0.5s ease;
 }
 
 .header-content {
@@ -1217,11 +1224,18 @@ body.light-mode .review-item:hover {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   body {
-    padding-top: 180px;
+    padding-top: 90px; /* Adjust this value to match your header height on mobile */
   }
 
   .header.fixed-top-bar {
-    position: static;
+    /* Keep position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .header.fixed-top-bar {
     padding-bottom: 0;
     border-bottom: none;
   }
@@ -1400,6 +1414,26 @@ body.light-mode .review-item:hover {
         width: 40px;
         height: 40px;
       }
+
+  .header-nav {
+    display: none !important;
+  }
+
+  .site-title,
+  .site-subtitle {
+    display: none !important;
+  }
+
+  .site-title {
+    color: transparent !important;
+    font-size: 0 !important;
+  }
+  .site-title img {
+    display: inline-block !important;
+  }
+  .site-subtitle {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
