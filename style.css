@@ -80,6 +80,8 @@ body.light-mode {
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 body, .section-body[lang="si"] {
@@ -118,6 +120,8 @@ body {
   user-select: none;
   -webkit-user-drag: none;
   touch-action: none;
+  will-change: transform;
+  transform: translateZ(0); /* This helps on iOS Safari */
 }
 
 /* Default for desktop (landscape) */
