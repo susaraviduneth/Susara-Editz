@@ -448,24 +448,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-  // Add event listeners for review images
-  document.querySelectorAll('.review-image-link').forEach(link => {
-    link.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the link from navigating
-      const imageSrc = this.getAttribute('data-image'); // Get the full-size image URL
-      fullscreenImage.src = imageSrc; // Set the modal image source
-      fullscreenModal.classList.add('is-visible'); // Show the modal
-    });
-  });
-  
-  const scrollTopLink = document.querySelector('.scroll-to-top');
-  if (scrollTopLink) {
-    scrollTopLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 });
 
 // --- Review Submission Functionality ---
