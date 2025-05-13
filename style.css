@@ -68,7 +68,7 @@ body.light-mode {
   --nav-bg: rgba(255, 248, 225, 0.95);
   --mid-dark-bg: #ffe0b2;
   --dark-bg: #ffd180;
-  --modal-bg: rgba(255, 255, 255, 0.98);
+  --modal-bg: rgba(255, 255, 255, 0.65); /* Light mode - more transparent */
   --close-button-color: #ff9800;
   --close-button-hover-color: #00bcd4;
   --modal-text-color: #ff9800;
@@ -380,18 +380,24 @@ body.light-mode .filter-button.active {
 /* Light mode specific keyframes if the accent colors change the glow effect significantly */
 @keyframes pulse-glow-light-mode {
     0% {
-        box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+        box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);  /* Orange/yellow glow */
+        border-color: var(--primary-accent);
     }
     50% {
-        /* Mid-animation state: stronger glow using light mode primary accent */
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6), 0 0 20px rgba(0, 123, 255, 0.6);
+        box-shadow: 0 0 15px var(--primary-accent), 0 0 20px var(--primary-accent);  /* Stronger yellow glow */
+        border-color: var(--primary-accent);
     }
     100% {
-        box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+        box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);  /* Orange/yellow glow */
+        border-color: var(--primary-accent);
     }
 }
 
 body.light-mode .order-button {
+    background-color: var(--button-green);
+    color: var(--text-color);
+    border: 1px solid var(--primary-accent);  /* Orange/yellow border */
+    box-shadow: 0 0 8px var(--primary-accent);  /* Orange/yellow glow */
     animation: pulse-glow-light-mode 2s ease-in-out infinite alternate;
 }
 
@@ -419,6 +425,7 @@ body.light-mode .order-button {
     display: flex; /* Use flexbox to center the icon */
     justify-content: center;
     align-items: center;
+    overflow: hidden;  /* Add this to contain the icons */
 }
 
 /* Icon for Dark Mode (Default) */
@@ -430,16 +437,46 @@ body.light-mode .order-button {
     /* Moon icon SVG data URL */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>');
     background-size: cover;
-    transition: background-image 0.3s ease;
+    transition: transform 0.3s ease;
+    position: absolute;
+    opacity: 1;
 }
 
-/* Icon for Light Mode */
+/* Add the second icon for Dark Mode */
+.theme-toggle-button::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    /* Star icon */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>');
+    background-size: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Light Mode icons */
 body.light-mode .theme-toggle-button::before {
-    /* Sun icon SVG data URL */
+    /* Sun icon */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
-    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3); /* Light mode box shadow */
+    opacity: 1;
 }
 
+body.light-mode .theme-toggle-button::after {
+    /* Cloud icon */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>');
+    opacity: 0;
+}
+
+/* Hover animations */
+.theme-toggle-button:hover::before {
+    opacity: 0;
+}
+
+.theme-toggle-button:hover::after {
+    opacity: 1;
+}
 
 .theme-toggle-button:hover {
     transform: rotate(180deg);
@@ -827,14 +864,11 @@ body.light-mode .creation-item::before {
 }
 
 body.light-mode .order-button {
-    /* Set background color to green for light mode */
     background-color: var(--button-green);
-    /* Set text color to dark grey for light mode */
     color: var(--text-color);
-    /* Set border color to green for light mode */
-    border: 1px solid var(--button-green);
-    /* Set box shadow to green for light mode */
-    box-shadow: 0 0 8px rgba(57, 255, 20, 0.5); /* Subtle glow based on neon green */
+    border: 1px solid var(--primary-accent);  /* Orange/yellow border */
+    box-shadow: 0 0 8px var(--primary-accent);  /* Orange/yellow glow */
+    animation: pulse-glow-light-mode 2s ease-in-out infinite alternate;
 }
 
 
@@ -990,10 +1024,9 @@ body.light-mode .price-item ul li {
     overflow: hidden;
     background-color: var(--modal-bg);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fullscreen-modal.is-visible {
@@ -1016,27 +1049,33 @@ body.light-mode .price-item ul li {
   z-index: 2001;
 }
 
-/* Style for the price display element in the modal */
+/* Style for the modal price with border */
 .modal-price {
     position: fixed;
-    bottom: 80px;
+    bottom: 50px; /* Adjust this value if needed */
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2003;
-    width: 100%;
-    max-width: 90%;
+    background-color: rgba(0, 0, 0, 0.8); /* More transparent background */
+    color: var(--modal-text-color);
+    padding: 1px 15px; /* Fixed missing closing comment */
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-style: bold;
+    font-family: 'Orbitron', sans-serif; /* Keep this font or update based on user preference */
+    text-shadow: 0 0 10px var(--primary-accent);
     text-align: center;
+    z-index: 2005; /* Add border styles */
+    border: 1px solid rgba(0, 174, 255, 0.3); /* More transparent border */
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0); /* Softer glow in theme color */
 }
 
-/* Style for the span wrapping the price text */
+/* Add a wrapper for the price text */
 .price-highlight {
-  display: inline-block; /* Make it behave like an inline-block to wrap content and accept padding/border */
-  /* Apply the border, padding, etc. here */
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Black border with 20% opacity */
-  padding: 5px; /* Add padding inside the border */
-  background-color: rgba(0, 0, 0, 0.3); /* Optional: Add a slight background for contrast */
-  border-radius: 5px; /* Optional: Rounded corners */
-  /* Font styles, color, text-shadow are inherited from .modal-price */
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 154, 3, 0.3); /* More transparent border */
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Ensure modal-previews bottom positioning is also considered */
@@ -1165,6 +1204,40 @@ body.light-mode .preview-dot.active {
         padding: 6px;
     }
 }
+
+.modal-nav-button {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2004;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prev-button {
+    left: 15px;
+}
+
+.next-button {
+    right: 15px;
+}
+
+.modal-nav-button:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%) scale(1.05);
+}
+
 
 /* Styling for Customer Reviews Section (now Feedback) */
 #reviews .section-body .reviews-list {
@@ -1703,14 +1776,21 @@ img[alt^="Creation"] {
 }
 
 body.light-mode .modal-price {
+    background-color: rgba(255, 255, 255, 0.1);
     color: var(--primary-accent);
-    text-shadow: 0 0 8px #fff, 0 0 2px var(--primary-accent);
+    text-shadow: 8px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--primary-accent); /* Add border */
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.2);
+    padding: 1px 15px;
 }
+
 body.light-mode .price-highlight {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     color: var(--primary-accent);
     border: 1px solid var(--primary-accent);
-    text-shadow: 0 1px 6px #fff, 0 0 2px var(--primary-accent);
+    text-shadow: 8px rgba(255, 255, 255, 0.5), 0 0 2px var(--primary-accent);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .modal-play-pause {

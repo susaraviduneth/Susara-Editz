@@ -4,35 +4,44 @@
 // This function adds smooth scrolling behavior when clicking on navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        // Don't handle scroll if it's a feedback image
+        if (this.classList.contains('review-image-link')) {
+            return;
+        }
+
         e.preventDefault(); // Prevent the default jump-to-anchor behavior
 
-        // Get the target element based on the href attribute
         const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        // Define an extra offset (in pixels) below the fixed header
-        const extraOffset = 20; // You can adjust this value (e.g., 10, 30, 50)
-
         console.log('Smooth scroll clicked:', targetId); // Debugging line
 
-        // Check if the target element exists
-        if (targetElement) {
-            // Calculate the offset needed to account for the fixed header height
-            const headerHeight = document.querySelector('.fixed-top-bar').offsetHeight;
-            // Get the target element's position relative to the viewport, add scrollY for absolute position
-            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-            // Subtract the header height AND the extra offset from the target position
-            const offsetPosition = targetPosition - headerHeight - extraOffset;
-
-            console.log('Scrolling to:', targetId, 'Calculated offset:', offsetPosition); // Debugging line
-
-            // Scroll smoothly to the calculated position
+        if (targetId === '#') {
             window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth' // Use smooth scrolling
+                top: 0,
+                behavior: 'smooth'
             });
         } else {
-            console.warn('Target element not found for ID:', targetId); // Debugging line if target is missing
+            const targetElement = document.querySelector(targetId);
+            // Define an extra offset (in pixels) below the fixed header
+            const extraOffset = 20; // You can adjust this value (e.g., 10, 30, 50)
+
+            if (targetElement) {
+                // Calculate the offset needed to account for the fixed header height
+                const headerHeight = document.querySelector('.fixed-top-bar').offsetHeight;
+                // Get the target element's position relative to the viewport, add scrollY for absolute position
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                // Subtract the header height AND the extra offset from the target position
+                const offsetPosition = targetPosition - headerHeight - extraOffset;
+
+                console.log('Scrolling to:', targetId, 'Calculated offset:', offsetPosition); // Debugging line
+
+                // Scroll smoothly to the calculated position
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth' // Use smooth scrolling
+                });
+            } else {
+                console.warn('Target element not found for ID:', targetId); // Debugging line if target is missing
+            }
         }
     });
 });
@@ -81,55 +90,67 @@ document.querySelectorAll('.creation-item').forEach(item => {
         if (e.target.closest('.order-button')) {
             return;
         }
-        
-        // Get all images in this item
-        const images = Array.from(this.querySelectorAll('img'));
-        
-        // Find which image was clicked
+
         const clickedImage = e.target.closest('img');
-        if (!clickedImage) return;
-        
+        if (!clickedImage) {
+            return;
+        }
+
         e.preventDefault();
         e.stopPropagation();
-        
-        // Set the current image set and find the clicked image index
+
+        // Get all images in this creation item
+        const images = Array.from(this.querySelectorAll('img'));
         currentImageSet = images;
         currentImageIndex = images.indexOf(clickedImage);
-        
-        // Show the modal with the clicked image
-        fullscreenImage.src = clickedImage.src;
+
+        // Show the modal
         fullscreenModal.classList.add('is-visible');
-        
+        fullscreenImage.src = clickedImage.src;
+
         // Show price if available
         const price = this.getAttribute('data-price');
-        if (modalPriceElement && price) {
-            modalPriceElement.innerHTML = `<div class="price-highlight">Price: ${price}</div>`;
+        if (price && modalPriceElement) {
+            modalPriceElement.textContent = `Price: ${price}`;
             modalPriceElement.style.display = 'block';
-            modalPriceElement.style.visibility = 'visible';
         }
-        
-        // Show preview dots if multiple images
+
+        // Show navigation if multiple images
         if (images.length > 1) {
             populatePreviews(images);
-            // Highlight the current image's preview dot
-            const previews = modalPreviewsContainer.querySelectorAll('.preview-dot');
-            previews.forEach((preview, idx) => {
-                if (idx === currentImageIndex) {
-                    preview.classList.add('active');
-                } else {
-                    preview.classList.remove('active');
-                }
-            });
-            
-            // Show navigation buttons
             prevButton.style.display = 'flex';
             nextButton.style.display = 'flex';
         } else {
             modalPreviewsContainer.style.display = 'none';
-            modalPreviewsContainer.innerHTML = '';
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
         }
+    });
+});
+
+// Separate click handler for feedback/review images
+document.querySelectorAll('.review-image-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Stop all default behaviors and propagation
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Get image source
+        const imgSrc = this.getAttribute('data-image') || this.querySelector('img').src;
+        
+        // Reset modal state
+        fullscreenModal.style.transition = 'none';
+        prevButton.style.display = 'none';
+        nextButton.style.display = 'none';
+        modalPreviewsContainer.style.display = 'none';
+        modalPriceElement.style.display = 'none';
+        
+        // Show image
+        fullscreenImage.src = imgSrc;
+        fullscreenModal.classList.add('is-visible');
+        
+        // Important: Stop event from triggering scroll handlers
+        return false;
     });
 });
 
@@ -141,6 +162,10 @@ function populatePreviews(images) {
         images.forEach((image, index) => {
             const previewDot = document.createElement('span');
             previewDot.classList.add('preview-dot');
+            // Add 'active' class to the current image's preview dot
+            if (index === currentImageIndex) {
+                previewDot.classList.add('active');
+            }
             previewDot.dataset.index = index;
             previewDot.addEventListener('click', () => {
                 showModalImage(index);
@@ -252,16 +277,25 @@ function showModalImage(index) {
     }
 }
 
-// Function to close the modal
+// Function to close the modal - replace the existing closeModal function
 function closeModal() {
+    // Remove classes
     fullscreenModal.classList.remove('is-visible');
+    
+    // Reset content
     fullscreenImage.src = '';
-    if (modalPriceElement) {
-        modalPriceElement.innerHTML = '';
-        modalPriceElement.style.display = 'none';
-    }
-    modalPreviewsContainer.innerHTML = '';
+    
+    // Reset UI elements
+    modalPriceElement.style.display = 'none';
     modalPreviewsContainer.style.display = 'none';
+    prevButton.style.display = 'none';
+    nextButton.style.display = 'none';
+    
+    // Reset zoom
+    zoom = 1;
+    fullscreenImage.style.transform = 'scale(1)';
+    
+    // Reset image sets
     currentImageSet = [];
     currentImageIndex = -1;
 }
@@ -270,6 +304,7 @@ function closeModal() {
 closeButton.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
+    stopSlideshow();
     closeModal();
 });
 
@@ -432,55 +467,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            // Don't handle scroll if it's a feedback image
+            if (this.classList.contains('review-image-link')) {
+                return;
+            }
+
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('.fixed-top-bar').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = targetPosition - headerHeight - 20;
 
+            if (targetId === '#') {
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: 0,
                     behavior: 'smooth'
                 });
+            } else {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.fixed-top-bar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = targetPosition - headerHeight - 20;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    console.warn('Target element not found for ID (DOMContentLoaded):', targetId);
+                }
             }
         });
     });
+
+    const scrollTopLink = document.querySelector('.scroll-to-top');
+    if (scrollTopLink) {
+        scrollTopLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
-
-// --- Review Submission Functionality ---
-// Removed as per user request
-/*
-const reviewForm = document.getElementById('review-form');
-const reviewsList = document.querySelector('#reviews .reviews-list');
-
-if (reviewForm) { // Check if the form exists before adding listener
-    reviewForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const customerNameInput = document.getElementById('customer-name');
-        const reviewContentInput = document.getElementById('review-content');
-        const customerName = customerNameInput.value.trim();
-        const reviewContent = reviewContentInput.value.trim();
-
-        if (customerName && reviewContent) {
-            const newReviewItem = document.createElement('div');
-            newReviewItem.classList.add('review-item');
-            newReviewItem.innerHTML = `
-                <p class="review-text">"${reviewContent}"</p>
-                <p class="customer-name">- ${customerName}</p>
-            `;
-            reviewsList.prepend(newReviewItem);
-            customerNameInput.value = '';
-            reviewContentInput.value = '';
-            console.log('Review submitted:', { name: customerName, review: reviewContent });
-        } else {
-            alert('Please enter both your name and review.');
-        }
-    });
-}
-*/
 
 // --- Drag/Swipe Navigation for Fullscreen Modal ---
 let startX = 0;
@@ -583,6 +611,53 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// Placeholder for the base function to open the modal
+function openModal(clickedImage, item) {
+    // This function will be populated with the core modal display logic later
+    // console.log('openModal called with:', clickedImage, item); // Keep or remove console.log as needed
+
+    const images = Array.from(item.querySelectorAll('img'));
+    
+    // Set the current image set and find the clicked image index
+    currentImageSet = images; // Ensure currentImageSet is declared in a scope accessible here
+    currentImageIndex = images.indexOf(clickedImage); // Ensure currentImageIndex is declared
+
+    // Show the modal with the clicked image
+    fullscreenImage.src = clickedImage.src;
+    fullscreenModal.classList.add('is-visible');
+    
+    // Show price if available
+    const price = item.getAttribute('data-price');
+    if (modalPriceElement && price) {
+        modalPriceElement.innerHTML = `<div class="price-highlight">Price: ${price}</div>`;
+        modalPriceElement.style.display = 'block';
+        modalPriceElement.style.visibility = 'visible';
+    }
+    
+    // Show preview dots if multiple images
+    if (images.length > 1) {
+        populatePreviews(images); // Ensure populatePreviews is defined and accessible
+        // Highlight the current image's preview dot
+        const previews = modalPreviewsContainer.querySelectorAll('.preview-dot');
+        previews.forEach((preview, idx) => {
+            if (idx === currentImageIndex) {
+                preview.classList.add('active');
+            } else {
+                preview.classList.remove('active');
+            }
+        });
+        
+        // Show navigation buttons
+        prevButton.style.display = 'flex'; // Ensure prevButton is defined
+        nextButton.style.display = 'flex'; // Ensure nextButton is defined
+    } else {
+        modalPreviewsContainer.style.display = 'none';
+        modalPreviewsContainer.innerHTML = '';
+        prevButton.style.display = 'none';
+        nextButton.style.display = 'none';
+    }
+}
+
 // 2. Animated Modal Open/Close
 fullscreenModal.classList.add('modal-animated');
 const originalOpenModal = openModal;
@@ -632,7 +707,6 @@ playPauseBtn.addEventListener('click', () => {
     }
 });
 fullscreenModal.addEventListener('click', stopSlideshow);
-closeButton.addEventListener('click', stopSlideshow);
 
 // 5. Image Zoom (scroll to zoom on desktop, pinch to zoom on mobile)
 let zoom = 1;
