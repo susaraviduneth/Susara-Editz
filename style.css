@@ -328,6 +328,7 @@ body.light-mode .filter-button.active {
     display: flex; /* Use flexbox to align text and icon */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Vertically align */
+    -webkit-text-fill-color: var(--primary-accent); /* Fix for Safari */
 }
 
 .animated-top-text .youtube-link {
@@ -350,6 +351,21 @@ body.light-mode .filter-button.active {
     transition: none; /* Remove transition for filter */
 }
 
+
+/* Update Safari-specific styles */
+@supports (-webkit-touch-callout: none) {
+    .animated-top-text {
+        color: var(--primary-accent) !important;
+        text-shadow: 0 0 5px var(--primary-accent) !important;
+        -webkit-text-fill-color: var(--primary-accent);
+    }
+
+    body.light-mode .animated-top-text {
+        color: var(--primary-accent) !important;
+        text-shadow: 0 0 5px var(--primary-accent) !important;
+        -webkit-text-fill-color: var(--primary-accent);
+    }
+}
 
 /* Animation Keyframes */
 @keyframes pulseGlow {
