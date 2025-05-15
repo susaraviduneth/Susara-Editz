@@ -1,3 +1,9 @@
+/*
+Theme Name: Susara Editz
+Author: Your Name
+Description: Custom theme for Susara Editz
+Version: 1.0
+*/
 /* Basic Reset */
 * {
   margin: 0;
@@ -110,7 +116,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('https://clipart-library.com/images/ATbrBq9pc.gif'); /* your image */
+  background-image: url('https://wallpapercave.com/wp/wp3554665.gif'); /* updated image */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -351,6 +357,38 @@ body.light-mode .filter-button.active {
     transition: none; /* Remove transition for filter */
 }
 
+
+/* Update Safari-specific styles */
+@supports (-webkit-touch-callout: none) {
+    .animated-top-text {
+        color: var(--primary-accent) !important;
+        text-shadow: 0 0 5px var(--primary-accent) !important;
+        -webkit-text-fill-color: var(--primary-accent) !important;
+        -webkit-text-stroke: 1px var(--primary-accent);
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    body.light-mode .animated-top-text {
+        color: #ff9800 !important;  /* Orange color for light mode */
+        text-shadow: 0 0 5px #ff9800 !important;
+        -webkit-text-fill-color: #ff9800 !important;
+        -webkit-text-stroke: 1px #ff9800;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    /* Add specific glow animation for Safari */
+    @-webkit-keyframes pulseGlow {
+        0% {
+            text-shadow: 0 0 5px var(--primary-accent) !important;
+        }
+        100% {
+            text-shadow: 0 0 15px var(--primary-accent), 
+                         0 0 20px var(--primary-accent) !important;
+        }
+    }
+}
 
 /* Update Safari-specific styles */
 @supports (-webkit-touch-callout: none) {
@@ -883,12 +921,6 @@ body.light-mode .order-button {
     background-color: var(--button-green);
     color: var(--text-color);
     border: 1px solid var(--primary-accent);  /* Orange/yellow border */
-    box-shadow: 0 0 8px var(--primary-accent);  /* Orange/yellow glow */
-    animation: pulse-glow-light-mode 2s ease-in-out infinite alternate;
-}
-
-
-.order-button:hover {
     transform: translateY(-2px) scale(1.05);
     animation: pulseBorder 1.5s infinite;
 }
@@ -1837,5 +1869,66 @@ body.light-mode .price-highlight {
   }
   100% {
     background-position: 100%;
+  }
+}
+
+/* Loading Screen Overlay */
+#loader-overlay {
+  position: fixed;
+  z-index: 3000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20,20,20,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+}
+
+#loader-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+/* Modern Loader Animation */
+.modern-loader {
+  display: flex;
+  gap: 12px;
+}
+
+.modern-loader span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-accent), #fff176 80%);
+  box-shadow: 0 0 18px 4px var(--primary-accent), 0 0 0 0 #fff176;
+  animation: modern-bounce 1s infinite alternate;
+}
+
+.modern-loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.modern-loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes modern-bounce {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 18px 4px var(--primary-accent), 0 0 0 0 #fff176;
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-18px) scale(1.1);
+    box-shadow: 0 0 28px 8px #fff176, 0 0 0 0 var(--primary-accent);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 18px 4px var(--primary-accent), 0 0 0 0 #fff176;
+    opacity: 1;
   }
 }

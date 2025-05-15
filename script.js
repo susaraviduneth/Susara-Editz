@@ -816,3 +816,26 @@ fullscreenModal.addEventListener('touchend', function(e) {
 window.addEventListener('load', () => {
     closeModal(); // Use closeModal to ensure everything is reset on load
 });
+
+// Add this to your script.js
+function submitFeedback(name, message) {
+  fetch('/api/feedback', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, message })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) alert('Feedback sent!');
+    else alert('Error: ' + data.error);
+  });
+}
+
+// Hide loader when page is fully loaded
+window.addEventListener('load', function() {
+  const loader = document.getElementById('loader-overlay');
+  if (loader) {
+    loader.classList.add('hide');
+    setTimeout(() => loader.style.display = 'none', 500);
+  }
+});
